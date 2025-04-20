@@ -1,7 +1,6 @@
 package pe.edu.upc.medih.servicesinterfaces;
 
 import pe.edu.upc.medih.entities.Especialidad;
-import pe.edu.upc.medih.entities.Rol;
 
 import java.util.List;
 

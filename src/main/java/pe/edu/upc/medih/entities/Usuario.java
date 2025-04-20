@@ -26,7 +26,7 @@ public class Usuario {
     @Column(name = "fechaNacimientoUsuario", length = 15, nullable = false)
     private String fechaNacimientoUsuario;
 
-    @Column(name = "disponibilidadUsuario", length = 30, nullable = false)
+    @Column(name = "disponibilidadUsuario", length = 30, nullable = true)
     private String disponibilidadUsuario;
 
     @ManyToOne

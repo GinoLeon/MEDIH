@@ -50,6 +50,6 @@ public class RolController {
     public void eliminar(@PathVariable("id") int id) {
         rS.delete(id);
     }
-
+    //prueba
 
 }

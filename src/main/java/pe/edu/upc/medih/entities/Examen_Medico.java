@@ -11,8 +11,8 @@ public class Examen_Medico {
     @Column(name ="tipoExamen" ,length =25 ,nullable = false)
     private String tipoExamen;
 
-    @Column(name ="rsultadoExamen" ,length =25 ,nullable = false)
-    private String rsultadoExamen;
+    @Column(name ="resultadoExamen" ,length =25 ,nullable = false)
+    private String resultadoExamen;
 
     @Column(name ="fechaExamen" ,length =25 ,nullable = false)
     private String fechaExamen;
@@ -20,10 +20,10 @@ public class Examen_Medico {
     public Examen_Medico() {
     }
 
-    public Examen_Medico(int idExamen, String tipoExamen, String rsultadoExamen, String fechaExamen) {
+    public Examen_Medico(int idExamen, String tipoExamen, String resultadoExamen, String fechaExamen) {
         this.idExamen = idExamen;
         this.tipoExamen = tipoExamen;
-        this.rsultadoExamen = rsultadoExamen;
+        this.resultadoExamen = resultadoExamen;
         this.fechaExamen = fechaExamen;
     }
 
@@ -43,12 +43,12 @@ public class Examen_Medico {
         this.tipoExamen = tipoExamen;
     }
 
-    public String getRsultadoExamen() {
-        return rsultadoExamen;
+    public String getResultadoExamen() {
+        return resultadoExamen;
     }
 
-    public void setRsultadoExamen(String rsultadoExamen) {
-        this.rsultadoExamen = rsultadoExamen;
+    public void setResultadoExamen(String resultadoExamen) {
+        this.resultadoExamen = resultadoExamen;
     }
 
     public String getFechaExamen() {

@@ -8,16 +8,8 @@ import jakarta.persistence.Id;
 public class Examen_MedicoDTO {
     private int idExamen;
     private String tipoExamen;
-    private String rsultadoExamen;
+    private String resultadoExamen;
     private String fechaExamen;
-
-    public int getIdExamen() {
-        return idExamen;
-    }
-
-    public void setIdExamen(int idExamen) {
-        this.idExamen = idExamen;
-    }
 
     public String getTipoExamen() {
         return tipoExamen;
@@ -27,12 +19,12 @@ public class Examen_MedicoDTO {
         this.tipoExamen = tipoExamen;
     }
 
-    public String getRsultadoExamen() {
-        return rsultadoExamen;
+    public String getResultadoExamen() {
+        return resultadoExamen;
     }
 
-    public void setRsultadoExamen(String rsultadoExamen) {
-        this.rsultadoExamen = rsultadoExamen;
+    public void setResultadoExamen(String resultadoExamen) {
+        this.resultadoExamen = resultadoExamen;
     }
 
     public String getFechaExamen() {
@@ -41,5 +33,13 @@ public class Examen_MedicoDTO {
 
     public void setFechaExamen(String fechaExamen) {
         this.fechaExamen = fechaExamen;
+    }
+
+    public int getIdExamen() {
+        return idExamen;
+    }
+
+    public void setIdExamen(int idExamen) {
+        this.idExamen = idExamen;
     }
 }

@@ -1,4 +1,4 @@
-package pe.edu.upc.medih.serviceimplements;
+package pe.edu.upc.medih.servicesimplements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.medih.entities.Hospital;

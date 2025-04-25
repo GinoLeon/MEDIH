@@ -30,11 +30,6 @@ public class TratamientoImplement implements ITratamientoService {
     }
 
     @Override
-    public Tratamiento searchbyId(int id) {
-        return null;
-    }
-
-    @Override
     public void update(Tratamiento tratamiento) {
         tratamientoRepository.save(tratamiento);
     }

@@ -2,29 +2,26 @@ package pe.edu.upc.medih.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
-@Table(name = "Roles")
-public class Rol {
+@Table(name = "roles", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "rol"})})
+public class Rol implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idRol;
+    private Long idRol;
 
-    @Column(name = "nameRol", length = 10, nullable = false)
     private String nameRol;
 
-    public Rol() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private Usuario user;
 
-    public Rol(int idRol, String nameRol) {
-        this.idRol = idRol;
-        this.nameRol = nameRol;
-    }
-
-    public int getIdRol() {
+    public Long getIdRol() {
         return idRol;
     }
 
-    public void setIdRol(int idRol) {
+    public void setIdRol(Long idRol) {
         this.idRol = idRol;
     }
 
@@ -34,5 +31,13 @@ public class Rol {
 
     public void setNameRol(String nameRol) {
         this.nameRol = nameRol;
+    }
+
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
     }
 }

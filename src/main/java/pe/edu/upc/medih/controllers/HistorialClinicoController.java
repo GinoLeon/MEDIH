@@ -22,9 +22,7 @@ public class HistorialClinicoController {
     public List<HistorialClinicoDTO> listar() {
         return hcS.list().stream().map(hc -> {
             ModelMapper mapper = new ModelMapper();
-            HistorialClinicoDTO dto = mapper.map(hc, HistorialClinicoDTO.class);
-            dto.setIdUsuario(hc.getUsuario().getIdUsuario());
-            return dto;
+            return mapper.map(hc, HistorialClinicoDTO.class);
         }).collect(Collectors.toList());
     }
 
@@ -32,17 +30,13 @@ public class HistorialClinicoController {
     public void insertar(@RequestBody HistorialClinicoDTO dto) {
         ModelMapper mapper = new ModelMapper();
         HistorialClinico historial = mapper.map(dto, HistorialClinico.class);
-        historial.setUsuario(new Usuario());
-        historial.getUsuario().setIdUsuario(dto.getIdUsuario());
         hcS.insert(historial);
     }
 
     @GetMapping("/{id}")
     public HistorialClinicoDTO obtenerPorId(@PathVariable("id") int id) {
         ModelMapper mapper = new ModelMapper();
-        HistorialClinico hc = hcS.searchById(id);
-        HistorialClinicoDTO dto = mapper.map(hc, HistorialClinicoDTO.class);
-        dto.setIdUsuario(hc.getUsuario().getIdUsuario());
+        HistorialClinicoDTO dto = mapper.map(hcS.searchById(id), HistorialClinicoDTO.class);
         return dto;
     }
 
@@ -50,8 +44,6 @@ public class HistorialClinicoController {
     public void modificar(@RequestBody HistorialClinicoDTO dto) {
         ModelMapper mapper = new ModelMapper();
         HistorialClinico historial = mapper.map(dto, HistorialClinico.class);
-        historial.setUsuario(new Usuario());
-        historial.getUsuario().setIdUsuario(dto.getIdUsuario());
         hcS.update(historial);
     }
 

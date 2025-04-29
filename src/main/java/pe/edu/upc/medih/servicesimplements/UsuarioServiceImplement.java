@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import pe.edu.upc.medih.entities.Usuario;
 import pe.edu.upc.medih.repositories.IUsuarioRepository;
 import pe.edu.upc.medih.servicesinterfaces.IUsuarioService;
-
 import java.util.List;
 
 @Service
@@ -24,7 +23,7 @@ public class UsuarioServiceImplement implements IUsuarioService {
     }
 
     @Override
-    public Usuario searchbyId(int id) {
+    public Usuario searchbyId(long id) {
         return uS.findById(id).orElse(new Usuario());
     }
 
@@ -34,7 +33,7 @@ public class UsuarioServiceImplement implements IUsuarioService {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(long id) {
         uS.deleteById(id);
     }
 }

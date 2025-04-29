@@ -2,12 +2,16 @@ package pe.edu.upc.medih.entities;
 
 import jakarta.persistence.*;
 
+import javax.management.relation.Role;
+import java.io.Serializable;
+import java.util.List;
+
 @Entity
 @Table(name = "Usuarios")
-public class Usuario {
+public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUsuario;
+    private long id;
     @Column(name = "nombreUsuario", length = 15, nullable = false)
     private String nombreUsuario;
 
@@ -20,8 +24,10 @@ public class Usuario {
     @Column(name = "telefonoUsuario", length = 11, nullable = false)
     private String telefonoUsuario;
 
-    @Column(name = "contraseniaUsuario", length = 30, nullable = false)
+    @Column(name = "contraseniaUsuario", length = 200, nullable = false)
     private String contraseniaUsuario;
+
+    private Boolean enabled;
 
     @Column(name = "fechaNacimientoUsuario", length = 15, nullable = false)
     private String fechaNacimientoUsuario;
@@ -29,19 +35,16 @@ public class Usuario {
     @Column(name = "disponibilidadUsuario", length = 30, nullable = true)
     private String disponibilidadUsuario;
 
-    @ManyToOne
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "idRol")
-    private Rol rol;
+    private List<Rol> rol;
 
-    public Usuario() {
+    public long getId() {
+        return id;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNombreUsuario() {
@@ -84,6 +87,14 @@ public class Usuario {
         this.contraseniaUsuario = contraseniaUsuario;
     }
 
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
     public String getFechaNacimientoUsuario() {
         return fechaNacimientoUsuario;
     }
@@ -100,11 +111,11 @@ public class Usuario {
         this.disponibilidadUsuario = disponibilidadUsuario;
     }
 
-    public Rol getRoles() {
+    public List<Rol> getRol() {
         return rol;
     }
 
-    public void setRoles(Rol rol) {
+    public void setRol(List<Rol> rol) {
         this.rol = rol;
     }
 }

@@ -2,7 +2,7 @@ package pe.edu.upc.medih.entities;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
-//prueba//
+
 @Entity
 @Table(name = "CitasMedicas")
 public class Cita_Medica {

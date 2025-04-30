@@ -1,5 +1,6 @@
 package pe.edu.upc.medih.controllers;
 
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/historial")
+@Slf4j
 public class HistorialClinicoController {
 
     @Autowired
@@ -20,6 +22,7 @@ public class HistorialClinicoController {
 
     @GetMapping
     public List<HistorialClinicoDTO> listar() {
+        log.info("Listado de todo el historial médico registradas");
         return hcS.list().stream().map(hc -> {
             ModelMapper mapper = new ModelMapper();
             return mapper.map(hc, HistorialClinicoDTO.class);

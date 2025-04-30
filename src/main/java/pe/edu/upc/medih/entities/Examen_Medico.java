@@ -8,13 +8,13 @@ public class Examen_Medico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idExamen;
-    @Column(name ="tipoExamen" ,length =25 ,nullable = false)
+    @Column(name ="tipoExamen" ,length =50 ,nullable = false)
     private String tipoExamen;
 
-    @Column(name ="resultadoExamen" ,length =25 ,nullable = false)
+    @Column(name ="resultadoExamen" ,length =100 ,nullable = false)
     private String resultadoExamen;
 
-    @Column(name ="fechaExamen" ,length =25 ,nullable = false)
+    @Column(name ="fechaExamen" ,length =30 ,nullable = false)
     private String fechaExamen;
 
     public Examen_Medico() {

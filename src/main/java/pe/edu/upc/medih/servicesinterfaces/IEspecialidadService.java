@@ -12,4 +12,5 @@ public interface IEspecialidadService {
     public void update(Especialidad a);
 
     public void delete(int id);
+    public List<String[]> CantidadDoctoresEspecialidad();
 }

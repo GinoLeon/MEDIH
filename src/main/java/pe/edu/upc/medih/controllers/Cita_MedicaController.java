@@ -1,5 +1,6 @@
 package pe.edu.upc.medih.controllers;
 
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/Cita_Medica")
+@Slf4j
 public class Cita_MedicaController {
 
     @Autowired
@@ -19,6 +21,7 @@ public class Cita_MedicaController {
 
     @GetMapping
     public List<Cita_MedicaDTO> listar() {
+        log.info("Listado de todas las citas médicas registradas");
         return cS.list().stream().map(cita -> {
             ModelMapper modelMapper = new ModelMapper();
             return modelMapper.map(cita, Cita_MedicaDTO.class);

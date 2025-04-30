@@ -15,4 +15,5 @@ public interface IUsuarioService {
 
     public void delete(long id);
 
+    public List<String[]> ListarCantidadRoles();
 }

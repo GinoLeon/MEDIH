@@ -1,5 +1,6 @@
 package pe.edu.upc.medih.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import javax.management.relation.Role;
@@ -36,7 +37,7 @@ public class Usuario implements Serializable {
     private String disponibilidadUsuario;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "idRol")
+    @JoinColumn(name = "user_id")
     private List<Rol> rol;
 
     public long getId() {

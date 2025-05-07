@@ -1,30 +1,25 @@
 package pe.edu.upc.medih.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "diagnosticos")
+@Table(name = "diagnostico")
 public class Diagnostico {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "descripcion", nullable = false, length = 200)
     private String descripcion;
 
-    @Column(name = "estado", nullable = false, length = 50) /
+    private LocalDateTime fecha;
+
     private String estado;
 
-    @Column(name = "fecha", nullable = false)
-    private java.time.LocalDateTime fecha;
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
-    // Constructor vacío
-    public Diagnostico() {
-        this.fecha = java.time.LocalDateTime.now(); // Fecha por defecto
-    }
-
-    // Getters y Setters
     public int getId() {
         return id;
     }
@@ -41,6 +36,14 @@ public class Diagnostico {
         this.descripcion = descripcion;
     }
 
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
+
     public String getEstado() {
         return estado;
     }
@@ -49,11 +52,11 @@ public class Diagnostico {
         this.estado = estado;
     }
 
-    public java.time.LocalDateTime getFecha() {
-        return fecha;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setFecha(java.time.LocalDateTime fecha) {
-        this.fecha = fecha;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

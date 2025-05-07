@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.medih.dtos.DiagnosticoDTO;
-import pe.edu.upc.medih.dtos.DiagnosticoRecentDTO;
 import pe.edu.upc.medih.entities.Diagnostico;
 import pe.edu.upc.medih.servicesinterfaces.IDiagnosticoService;
 
@@ -25,18 +24,20 @@ public class DiagnosticoController {
             dto.setId(d.getId());
             dto.setDescripcion(d.getDescripcion());
             dto.setUsuarioId(d.getUsuario().getId());
+            dto.setFecha(d.getFecha());
             return dto;
         }).collect(Collectors.toList());
         return ResponseEntity.ok(diagnosticos);
     }
 
     @GetMapping("/recientes/{fecha}")
-    public ResponseEntity<List<DiagnosticoRecentDTO>> findRecentDiagnosticos(@PathVariable("fecha") String fecha) {
-        List<DiagnosticoRecentDTO> diagnosticos = diagnosticoService.findRecentDiagnosticos(fecha).stream().map(d -> {
-            DiagnosticoRecentDTO dto = new DiagnosticoRecentDTO();
+    public ResponseEntity<List<DiagnosticoDTO>> findRecentDiagnosticos(@PathVariable("fecha") String fecha) {
+        List<DiagnosticoDTO> diagnosticos = diagnosticoService.findRecentDiagnosticos(fecha).stream().map(d -> {
+            DiagnosticoDTO dto = new DiagnosticoDTO();
             dto.setId(d.getId());
             dto.setDescripcion(d.getDescripcion());
-            dto.setFecha(d.getFecha().toString());
+            dto.setUsuarioId(d.getUsuario().getId());
+            dto.setFecha(d.getFecha());
             return dto;
         }).collect(Collectors.toList());
         return ResponseEntity.ok(diagnosticos);

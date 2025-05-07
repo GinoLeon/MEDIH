@@ -23,9 +23,7 @@ public interface IDDiagnosticoRepository extends JpaRepository<Diagnostico, Inte
     List<Diagnostico> findRecentDiagnosticos(@Param("fecha") String fecha);
 
     @Transactional
-    @Modifyingq
+    @Modifying
     @Query("DELETE FROM Diagnostico d WHERE d.estado = :estado")
     void deleteByEstado(@Param("estado") String estado);
-
-
 }

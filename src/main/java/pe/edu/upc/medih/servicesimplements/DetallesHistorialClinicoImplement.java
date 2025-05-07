@@ -37,4 +37,9 @@ public class DetallesHistorialClinicoImplement implements IDetallesHistorialClin
     public void delete(int id) {
         dR.deleteById(id);
     }
+
+    @Override
+    public List<String[]> HistorialClinicoPorUsuario(long    id) {
+        return dR.HistorialClinicoPorUsuario(id);
+    }
 }

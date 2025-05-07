@@ -21,7 +21,7 @@ public class DiagnosticoController {
     public ResponseEntity<List<DiagnosticoDTO>> findByDescripcion(@PathVariable("descripcion") String descripcion) {
         List<DiagnosticoDTO> diagnosticos = diagnosticoService.findByDescripcionContaining(descripcion).stream().map(d -> {
             DiagnosticoDTO dto = new DiagnosticoDTO();
-            dto.setId(d.getId());
+            dto.setId(d.getIdDiagnostico());
             dto.setDescripcion(d.getDescripcion());
             dto.setUsuarioId(d.getUsuario().getId());
             dto.setFecha(d.getFecha());
@@ -34,7 +34,7 @@ public class DiagnosticoController {
     public ResponseEntity<List<DiagnosticoDTO>> findRecentDiagnosticos(@PathVariable("fecha") String fecha) {
         List<DiagnosticoDTO> diagnosticos = diagnosticoService.findRecentDiagnosticos(fecha).stream().map(d -> {
             DiagnosticoDTO dto = new DiagnosticoDTO();
-            dto.setId(d.getId());
+            dto.setId(d.getIdDiagnostico());
             dto.setDescripcion(d.getDescripcion());
             dto.setUsuarioId(d.getUsuario().getId());
             dto.setFecha(d.getFecha());

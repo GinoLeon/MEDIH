@@ -15,7 +15,7 @@ public class Usuario_Especialidad {
     @JoinColumn(name="idEspecialidad",nullable=false)
     private Especialidad especialidad;
 
-    @Column(name = "",length=25,nullable=false)
+    @Column(name = "fechaDeRegistro",length=25,nullable=false)
     private String fechaDeRegistro;
 
     public int getIdUsuarioEspecialidad() {

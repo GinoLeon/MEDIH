@@ -13,7 +13,6 @@ public class UsuarioDTO {
     private String contraseniaUsuario;
     private String fechaNacimientoUsuario;
     private String disponibilidadUsuario;
-    private List<RolDTO> roles;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -79,11 +78,4 @@ public class UsuarioDTO {
         this.disponibilidadUsuario = disponibilidadUsuario;
     }
 
-    public List<RolDTO> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<RolDTO> roles) {
-        this.roles = roles;
-    }
 }

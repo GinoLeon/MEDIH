@@ -2,6 +2,7 @@ package pe.edu.upc.medih.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import pe.edu.upc.medih.entities.Diagnostico;
 
@@ -12,7 +13,7 @@ public interface IDDiagnosticoRepository extends JpaRepository<Diagnostico, Inte
     List<Diagnostico> findByDescripcionContaining(String descripcion);
 
     @Query(value = "SELECT * FROM diagnostico WHERE fecha >= :fecha", nativeQuery = true)
-    List<Diagnostico> findRecentDiagnosticos(String fecha);
+    List<Diagnostico> findRecentDiagnosticos(@Param("fecha")String fecha);
 
     void deleteByEstado(String estado);
 }

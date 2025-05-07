@@ -1,6 +1,5 @@
 package pe.edu.upc.medih.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.io.Serializable;

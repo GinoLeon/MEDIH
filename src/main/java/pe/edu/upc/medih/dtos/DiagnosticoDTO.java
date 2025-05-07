@@ -6,7 +6,7 @@ public class DiagnosticoDTO {
     private int id;
     private String descripcion;
     private LocalDateTime fecha;
-    private int usuarioId;
+    private long usuarioId;
 
     public int getId() {
         return id;
@@ -32,11 +32,11 @@ public class DiagnosticoDTO {
         this.fecha = fecha;
     }
 
-    public int getUsuarioId() {
+    public long getUsuarioId() {
         return usuarioId;
     }
 
-    public void setUsuarioId(int usuarioId) {
+    public void setUsuarioId(long usuarioId) {
         this.usuarioId = usuarioId;
     }
 }

@@ -38,4 +38,9 @@ public class DiagnosticoServiceImpl implements IDiagnosticoService {
     public void update(Diagnostico diagnostico) {
         diagnosticoRepository.save(diagnostico);
     }
+
+    @Override
+    public void deleteByEstado(String estado) {
+        diagnosticoRepository.deleteByEstado(estado);
+    }
 }

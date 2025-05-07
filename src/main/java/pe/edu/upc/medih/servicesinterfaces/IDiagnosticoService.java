@@ -10,4 +10,5 @@ public interface IDiagnosticoService {
     void delete(int id);
     Diagnostico findById(int id);
     void update(Diagnostico diagnostico);
+    void deleteByEstado(String estado); // Nuevo método
 }

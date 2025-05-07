@@ -16,14 +16,11 @@ public interface IDDiagnosticoRepository extends JpaRepository<Diagnostico, Inte
     @Query("SELECT d FROM Diagnostico d WHERE d.descripcion LIKE %:descripcion%")
     List<Diagnostico> findByDescripcionContaining(@Param("descripcion") String descripcion);
 
-    @Query("SELECT COUNT(d) FROM Diagnostico d WHERE d.estado = :estado")
-    int countByEstado(@Param("estado") String estado);
-
-    @Query(value = "SELECT * FROM diagnostico WHERE fecha_creacion >= :fecha", nativeQuery = true)
+    @Query(value = "SELECT * FROM diagnosticos WHERE fecha >= :fecha", nativeQuery = true) // Corregido
     List<Diagnostico> findRecentDiagnosticos(@Param("fecha") String fecha);
 
     @Transactional
     @Modifying
-    @Query("DELETE FROM Diagnostico d WHERE d.estado = :estado")
+    @Query("DELETE FROM Diagnostico d WHERE d.estado = :estado") // Ahora funciona correctamente
     void deleteByEstado(@Param("estado") String estado);
 }

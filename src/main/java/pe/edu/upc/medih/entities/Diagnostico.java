@@ -3,15 +3,26 @@ package pe.edu.upc.medih.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "diagnosticos") // Asegúrate de que la tabla exista en la base de datos
+@Table(name = "diagnosticos")
 public class Diagnostico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "descripcion", nullable = false, length = 200) // Verifica que la columna exista en la tabla
+    @Column(name = "descripcion", nullable = false, length = 200)
     private String descripcion;
+
+    @Column(name = "estado", nullable = false, length = 50) /
+    private String estado;
+
+    @Column(name = "fecha", nullable = false)
+    private java.time.LocalDateTime fecha;
+
+    // Constructor vacío
+    public Diagnostico() {
+        this.fecha = java.time.LocalDateTime.now(); // Fecha por defecto
+    }
 
     // Getters y Setters
     public int getId() {
@@ -28,5 +39,21 @@ public class Diagnostico {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public java.time.LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(java.time.LocalDateTime fecha) {
+        this.fecha = fecha;
     }
 }

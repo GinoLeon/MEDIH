@@ -13,6 +13,7 @@ public class UsuarioDTO {
     private String contraseniaUsuario;
     private String fechaNacimientoUsuario;
     private String disponibilidadUsuario;
+    private int edad; // Nuevo campo para la edad
 
     public int getIdUsuario() {
         return idUsuario;
@@ -76,6 +77,14 @@ public class UsuarioDTO {
 
     public void setDisponibilidadUsuario(String disponibilidadUsuario) {
         this.disponibilidadUsuario = disponibilidadUsuario;
+    }
+
+    public int getEdad() { // Getter para la edad
+        return edad;
+    }
+
+    public void setEdad(int edad) { // Setter para la edad
+        this.edad = edad;
     }
 
 }

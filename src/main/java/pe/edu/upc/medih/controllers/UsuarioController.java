@@ -65,4 +65,10 @@ public class UsuarioController {
         }
         return dtolista;
     }
+
+    // Calcular Edad
+    @GetMapping("/CalcularEdad/{id}")
+    public int calcularEdad(@PathVariable("id") long id) {
+        return uS.calcularEdad(id);
+    }
 }

@@ -31,4 +31,10 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
             "               GROUP BY r.name_rol\n",nativeQuery = true)
     public List<String[]> ListarCantidadRoles();
 
+    //Calcular Edad
+    @Query(value = "SELECT TIMESTAMPDIFF(YEAR, u.fecha_nacimiento_usuario, CURDATE()) AS edad " +
+            "FROM usuarios u " +
+            "WHERE u.id = :idUsuario", nativeQuery = true)
+    int calcularEdad(@Param("idUsuario") long idUsuario);
+
 }

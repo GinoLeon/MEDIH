@@ -37,4 +37,9 @@ public class EspecialidadImplement implements IEspecialidadService {
     public void delete(int id) {
         eR.deleteById(id);
     }
+
+    @Override
+    public List<String[]> CantidadDoctoresEspecialidad() {
+        return eR.CantidadDoctoresEspecialidad();
+    }
 }

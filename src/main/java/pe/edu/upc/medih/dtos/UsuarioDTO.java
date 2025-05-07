@@ -2,6 +2,8 @@ package pe.edu.upc.medih.dtos;
 
 import pe.edu.upc.medih.entities.Rol;
 
+import java.util.List;
+
 public class UsuarioDTO {
     private int idUsuario;
     private String nombreUsuario;
@@ -11,7 +13,7 @@ public class UsuarioDTO {
     private String contraseniaUsuario;
     private String fechaNacimientoUsuario;
     private String disponibilidadUsuario;
-    private Rol rol;
+    private List<RolDTO> roles;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -77,11 +79,11 @@ public class UsuarioDTO {
         this.disponibilidadUsuario = disponibilidadUsuario;
     }
 
-    public Rol getRoles() {
-        return rol;
+    public List<RolDTO> getRoles() {
+        return roles;
     }
 
-    public void setRoles(Rol rol) {
-        this.rol = rol;
+    public void setRoles(List<RolDTO> roles) {
+        this.roles = roles;
     }
 }

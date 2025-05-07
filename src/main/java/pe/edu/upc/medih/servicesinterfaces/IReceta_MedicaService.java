@@ -9,4 +9,6 @@ public interface IReceta_MedicaService {
     Receta_Medica searchById(int id);
     void update(Receta_Medica recetaMedica);
     void delete(int id);
+
+    List<String[]> cantidadRecetasPorDoctorDesde2025();
 }

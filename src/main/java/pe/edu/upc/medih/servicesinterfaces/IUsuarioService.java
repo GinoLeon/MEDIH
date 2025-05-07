@@ -7,6 +7,7 @@ import pe.edu.upc.medih.entities.Usuario;
 import java.util.List;
 
 public interface IUsuarioService {
+    int calcularEdad(long idUsuario);//calcular edad
     public List<Usuario> list();
     public void insert(Usuario a);
 

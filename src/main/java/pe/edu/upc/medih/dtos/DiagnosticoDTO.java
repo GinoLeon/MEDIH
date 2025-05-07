@@ -1,16 +1,11 @@
 package pe.edu.upc.medih.dtos;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-public class DiagnosticoDTO {
+public class DiagnosticoRecentDTO {
     private int id;
-
-    @JsonProperty("descripcion_diagnostico")
     private String descripcion;
+    private String fecha;
 
-    @JsonProperty("usuario_id")
-    private int usuarioId;
-
+    // Getters y Setters
     public int getId() {
         return id;
     }
@@ -27,11 +22,11 @@ public class DiagnosticoDTO {
         this.descripcion = descripcion;
     }
 
-    public int getUsuarioId() {
-        return usuarioId;
+    public String getFecha() {
+        return fecha;
     }
 
-    public void setUsuarioId(int usuarioId) {
-        this.usuarioId = usuarioId;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 }

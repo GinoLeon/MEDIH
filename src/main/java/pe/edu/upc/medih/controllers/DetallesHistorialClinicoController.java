@@ -51,7 +51,7 @@ public class DetallesHistorialClinicoController {
         dS.delete(id);
     }
 
-    @GetMapping("/rseumen")
+    @GetMapping("/resumen")
     public List<ResumenDetalleHistorialClinicoDTO> ResumenHistorialClinico(@RequestParam long id) {
         List<ResumenDetalleHistorialClinicoDTO> dtoLista=new ArrayList<>();
         List<String[]> fila=dS.HistorialClinicoPorUsuario(id);

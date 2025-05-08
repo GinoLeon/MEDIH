@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface IHistorialClinicoRepository extends JpaRepository<HistorialClinico, Integer> {
        // obitene todos los historiales cloiinicos de un paciente segun id
-    @Query("SELECT h FROM HistorialClinico h WHERE h.paciente.id = :pacienteId")
+    @Query(value = "SELECT * FROM historial_clinico h WHERE id_usuario = :pacienteId",nativeQuery = true)
     List<HistorialClinico> findByPacienteId(@Param("pacienteId") Integer pacienteId);
 }

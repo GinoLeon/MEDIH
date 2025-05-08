@@ -1,19 +1,18 @@
 package pe.edu.upc.medih.dtos.queries;
 
-import java.time.LocalDate;
 
 public class ResumenDetalleHistorialClinicoDTO {
-    public int idDetalleHistorial;
-    public String FechaRegistro;
-    public String nombreUsuario;
-    public String tipoTratamiento;
-    public String fechaInicio;
-    public String fechaFin;
-    public String tipoExamen;
-    public String resultadoExamen;
-    public String fechaExamen;
-    public String nombreMedicamento;
-    public String DescripcionMedicamento;
+    private int idDetalleHistorial;
+    private String fechaRegistro;
+    private String nombreUsuario;
+    private String tipoTratamiento;
+    private String fechaInicio;
+    private String fechaFin;
+    private String tipoExamen;
+    private String resultadoExamen;
+    private String fechaExamen;
+    private String nombreMedicamento;
+    private String descripcionMedicamento;
 
     public int getIdDetalleHistorial() {
         return idDetalleHistorial;
@@ -24,11 +23,11 @@ public class ResumenDetalleHistorialClinicoDTO {
     }
 
     public String getFechaRegistro() {
-        return FechaRegistro;
+        return fechaRegistro;
     }
 
     public void setFechaRegistro(String fechaRegistro) {
-        FechaRegistro = fechaRegistro;
+        this.fechaRegistro = fechaRegistro;
     }
 
     public String getNombreUsuario() {
@@ -96,10 +95,10 @@ public class ResumenDetalleHistorialClinicoDTO {
     }
 
     public String getDescripcionMedicamento() {
-        return DescripcionMedicamento;
+        return descripcionMedicamento;
     }
 
     public void setDescripcionMedicamento(String descripcionMedicamento) {
-        DescripcionMedicamento = descripcionMedicamento;
+        this.descripcionMedicamento = descripcionMedicamento;
     }
 }

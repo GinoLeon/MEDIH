@@ -5,10 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.medih.dtos.HospitalDTO;
 import pe.edu.upc.medih.dtos.RolDTO;
+import pe.edu.upc.medih.dtos.queries.DistanciaHospitalDTO;
+import pe.edu.upc.medih.dtos.queries.ResumenDetalleHistorialClinicoDTO;
 import pe.edu.upc.medih.entities.Hospital;
 import pe.edu.upc.medih.entities.Rol;
 import pe.edu.upc.medih.servicesinterfaces.IHospitalService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,6 +54,17 @@ public class HospitalController {
     public void eliminar(@PathVariable("id") int id) {
         hS.delete(id);
     }
-    //prueba
 
+    @GetMapping("/distancia")
+    public List<DistanciaHospitalDTO> ResumenHistorialClinico(@RequestParam double latitud, @RequestParam double longitud) {
+        List<DistanciaHospitalDTO> dtoLista=new ArrayList<>();
+        List<String[]> fila=hS.getDistanciaKm(latitud, longitud);
+        for(String[]columna:fila){
+            DistanciaHospitalDTO dto=new DistanciaHospitalDTO();
+            dto.setNombreHospital(columna[0]);
+            dto.setDistancia_km(columna[1]);
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
 }

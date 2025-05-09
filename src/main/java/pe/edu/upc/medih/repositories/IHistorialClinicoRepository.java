@@ -12,8 +12,10 @@ import java.util.List;
 
 public interface IHistorialClinicoRepository extends JpaRepository<HistorialClinico, Integer> {
        // obitene todos los historiales cloiinicos de un paciente segun id
+
+
     @Query(value = "SELECT * FROM historial_clinico h WHERE id_usuario = :pacienteId",nativeQuery = true)
-    List<HistorialClinico> findByPacienteId(@Param("pacienteId") Integer pacienteId);
+    public List<HistorialClinico> findByPacienteId(@Param("pacienteId") Integer pacienteId);
 
     @Modifying
     @Transactional
@@ -21,5 +23,5 @@ public interface IHistorialClinicoRepository extends JpaRepository<HistorialClin
     void reasignarHistoriales(@Param("nuevoUsuario") Usuario nuevoUsuario, @Param("idPaciente") long idPaciente);
 
     @Query("SELECT h FROM HistorialClinico h WHERE h.usuario.id = :idPaciente")
-    List<HistorialClinico> buscarPorPaciente(@Param("idPaciente") int idPaciente);
+    public List<HistorialClinico> buscarPorPaciente(@Param("idPaciente") int idPaciente);
 }

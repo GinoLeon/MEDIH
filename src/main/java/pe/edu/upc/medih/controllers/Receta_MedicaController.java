@@ -58,4 +58,8 @@ public class Receta_MedicaController {
     }
 
 
+    @GetMapping("/medicamentos-recetados")
+    public List<Object[]> obtenerMedicamentosRecetados(@RequestParam String fecha) {
+        return rM.obtenerMedicamentosRecetados(fecha);
+    }
 }

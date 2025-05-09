@@ -11,4 +11,6 @@ public interface IReceta_MedicaService {
     void update(Receta_Medica recetaMedica);
     void delete(int id);
 
+
+    List<Object[]> obtenerMedicamentosRecetados(String fecha);
 }

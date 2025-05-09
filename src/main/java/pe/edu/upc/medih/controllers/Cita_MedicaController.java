@@ -48,4 +48,12 @@ public class Cita_MedicaController {
         Cita_Medica citaMedica = modelMapper.map(dto, Cita_Medica.class);
         cS.update(citaMedica);
     }
+
+    @GetMapping("/buscarPorEstado/{estado}")
+    public List<Cita_MedicaDTO> buscarPorEstado(@PathVariable("estado") String estado) {
+        return cS.findByEstado(estado).stream().map(cita -> {
+            ModelMapper modelMapper = new ModelMapper();
+            return modelMapper.map(cita, Cita_MedicaDTO.class);
+        }).collect(Collectors.toList());
+    }
 }

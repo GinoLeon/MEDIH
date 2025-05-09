@@ -51,5 +51,11 @@ public class Receta_MedicaController {
         rM.delete(id);
     }
 
+    // This method is used to count the number of prescriptions by doctor
+    @GetMapping("/contarPorDoctor")
+    public List<Object[]> contarPorDoctor() {
+        return rM.countRecetasByDoctor();
+    }
+
 
 }

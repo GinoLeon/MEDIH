@@ -17,10 +17,10 @@ public class Usuario_EspecialidadController {
     private IUsuario_EspecialidadService ueS;
 
     @GetMapping
-    public List<Usuario_Especialidad> listar() {
+    public List<Usuario_EspecialidadDTO> listar() {
         return ueS.findAll().stream().map(u -> {
             ModelMapper modelMapper = new ModelMapper();
-            return modelMapper.map(u, Usuario_Especialidad.class);
+            return modelMapper.map(u, Usuario_EspecialidadDTO.class);
         }).collect(Collectors.toList());
     }
     @PostMapping

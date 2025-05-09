@@ -2,6 +2,7 @@ package pe.edu.upc.medih.entities;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -9,7 +10,7 @@ import java.util.List;
 public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(name = "nombreUsuario", length = 15, nullable = false)
     private String nombreUsuario;
 
@@ -27,8 +28,8 @@ public class Usuario implements Serializable {
 
     private Boolean enabled;
 
-    @Column(name = "fechaNacimientoUsuario", length = 15, nullable = false)
-    private String fechaNacimientoUsuario;
+    @Column(name = "fechaNacimientoUsuario", nullable = false)
+    private LocalDate fechaNacimientoUsuario;
 
     @Column(name = "disponibilidadUsuario", length = 30, nullable = true)
     private String disponibilidadUsuario;
@@ -93,11 +94,11 @@ public class Usuario implements Serializable {
         this.enabled = enabled;
     }
 
-    public String getFechaNacimientoUsuario() {
+    public LocalDate getFechaNacimientoUsuario() {
         return fechaNacimientoUsuario;
     }
 
-    public void setFechaNacimientoUsuario(String fechaNacimientoUsuario) {
+    public void setFechaNacimientoUsuario(LocalDate fechaNacimientoUsuario) {
         this.fechaNacimientoUsuario = fechaNacimientoUsuario;
     }
 

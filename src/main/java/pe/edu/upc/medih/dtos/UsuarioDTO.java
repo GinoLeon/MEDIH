@@ -1,26 +1,21 @@
 package pe.edu.upc.medih.dtos;
 
-import pe.edu.upc.medih.entities.Rol;
-
-import java.util.List;
-
 public class UsuarioDTO {
-    private int idUsuario;
+    private Long id;
     private String nombreUsuario;
     private String apellidoUsuario;
     private String correoUsuario;
     private String telefonoUsuario;
     private String contraseniaUsuario;
     private String fechaNacimientoUsuario;
-    private String disponibilidadUsuario;
-    private int edad; // Nuevo campo para la edad
+    private String disponibilidadUsuario;// Nuevo campo para la edad
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNombreUsuario() {
@@ -77,14 +72,6 @@ public class UsuarioDTO {
 
     public void setDisponibilidadUsuario(String disponibilidadUsuario) {
         this.disponibilidadUsuario = disponibilidadUsuario;
-    }
-
-    public int getEdad() { // Getter para la edad
-        return edad;
-    }
-
-    public void setEdad(int edad) { // Setter para la edad
-        this.edad = edad;
     }
 
 }

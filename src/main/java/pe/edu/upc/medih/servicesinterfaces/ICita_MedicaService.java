@@ -5,7 +5,9 @@ import pe.edu.upc.medih.entities.Cita_Medica;
 import java.util.List;
 
 public interface ICita_MedicaService {
+
     List<Cita_Medica> list();
+    List<Cita_Medica> findByEstado(String estado);
 
     void insert(Cita_Medica cita);
 

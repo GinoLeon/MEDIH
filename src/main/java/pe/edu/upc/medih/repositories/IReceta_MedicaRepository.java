@@ -10,11 +10,7 @@ import java.util.List;
 @Repository
 public interface IReceta_MedicaRepository extends JpaRepository<Receta_Medica, Integer> {
 
-    @Query(value = "SELECT u.nombres AS nombreDoctor, COUNT(r.id_receta) AS totalRecetas " +
-            "FROM RecetasMedicas r " +
-            "JOIN Usuario u ON r.id_doctor = u.id_usuario " +
-            "WHERE r.fecha > '2025-01-01' " +
-            "GROUP BY u.nombres " +
-            "ORDER BY totalRecetas DESC", nativeQuery = true)
-    List<String[]> cantidadRecetasPorDoctorDesde2025();
+    // Custom query to find Receta_Medica by estado
+    @Query("SELECT r.doctor.nombreUsuario, COUNT(r) FROM Receta_Medica r GROUP BY r.doctor")
+    List<Object[]> countRecetasByDoctor();
 }

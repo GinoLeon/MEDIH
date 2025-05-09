@@ -2,14 +2,11 @@ package pe.edu.upc.medih.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.medih.dtos.MedicamentoDTO;
-import pe.edu.upc.medih.dtos.queries.MedicamentoRecetadoDTO;
 import pe.edu.upc.medih.entities.Medicamento;
 import pe.edu.upc.medih.servicesinterfaces.IMedicamentoService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,18 +46,4 @@ public class MedicamentoController {
         mS.delete(id);
     }
 
-    @GetMapping("/reporte/medicamentos-mas-recetados")
-    public List<MedicamentoRecetadoDTO> getMedicamentosMasRecetados() {
-        List<String[]> lista = mS.medicamentosMasRecetados();
-        List<MedicamentoRecetadoDTO> dtoList = new ArrayList<>();
-
-        for (String[] fila : lista) {
-            MedicamentoRecetadoDTO dto = new MedicamentoRecetadoDTO();
-            dto.setNombreMedicamento(fila[0]);
-            dto.setTotalRecetas(Integer.parseInt(fila[1]));
-            dtoList.add(dto);
-        }
-
-        return dtoList;
-    }
 }

@@ -38,4 +38,8 @@ public class Cita_MedicaImplement implements ICita_MedicaService {
     public void delete(int id) {
         cR.deleteById(id);
     }
+
+    @Override
+    public List<Cita_Medica> findByEstado(String estado) {
+        return cR.findByEstado(estado);}
 }

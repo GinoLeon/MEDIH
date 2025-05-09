@@ -1,14 +1,25 @@
 package pe.edu.upc.medih.dtos;
 
-public class RolDTO {
-    private int idRol;
-    private String nameRol;
+import pe.edu.upc.medih.entities.Usuario;
 
-    public int getIdRol() {
+public class RolDTO {
+    private Long idRol;
+    private String nameRol;
+    private Usuario userId;
+
+    public Usuario getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Usuario userId) {
+        this.userId = userId;
+    }
+
+    public Long getIdRol() {
         return idRol;
     }
 
-    public void setIdRol(int idRol) {
+    public void setIdRol(Long idRol) {
         this.idRol = idRol;
     }
 

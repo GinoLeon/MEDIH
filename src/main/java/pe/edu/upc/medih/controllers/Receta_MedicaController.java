@@ -4,11 +4,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.medih.dtos.Receta_MedicaDTO;
-import pe.edu.upc.medih.dtos.queries.DoctorRecetasDTO;
 import pe.edu.upc.medih.entities.Receta_Medica;
 import pe.edu.upc.medih.servicesinterfaces.IReceta_MedicaService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,19 +51,11 @@ public class Receta_MedicaController {
         rM.delete(id);
     }
 
-    @GetMapping("/reporte/recetas-por-doctor")
-    public List<DoctorRecetasDTO> getCantidadRecetasPorDoctorDesde2025() {
-        List<String[]> lista = rM.cantidadRecetasPorDoctorDesde2025();
-        List<DoctorRecetasDTO> dtoList = new ArrayList<>();
-
-        for (String[] fila : lista) {
-            DoctorRecetasDTO dto = new DoctorRecetasDTO();
-            dto.setNombreDoctor(fila[0]);
-            dto.setTotalRecetas(Integer.parseInt(fila[1]));
-            dtoList.add(dto);
-        }
-
-        return dtoList;
+    // This method is used to count the number of prescriptions by doctor
+    @GetMapping("/contarPorDoctor")
+    public List<Object[]> contarPorDoctor() {
+        return rM.countRecetasByDoctor();
     }
+
 
 }

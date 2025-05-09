@@ -45,4 +45,8 @@ public class Receta_MedicaImplement implements IReceta_MedicaService {
         return recetaMedicaRepository.countRecetasByDoctor();
     }
 
+    @Override
+    public List<Object[]> obtenerMedicamentosRecetados(String fecha) {
+        return recetaMedicaRepository.obtenerMedicamentosRecetados(fecha);
+    }
 }

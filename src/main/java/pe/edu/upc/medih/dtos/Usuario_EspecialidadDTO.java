@@ -1,13 +1,14 @@
 package pe.edu.upc.medih.dtos;
 
 import pe.edu.upc.medih.entities.Especialidad;
-import pe.edu.upc.medih.entities.Usuario;
+
+import java.time.LocalDate;
 
 public class Usuario_EspecialidadDTO {
     private int idUsuarioEspecialidad;
-    private Usuario usuario;
+    private UsuarioDTO usuario;
     private Especialidad especialidad;
-    private String fechaDeRegistro;
+    private LocalDate fechaDeRegistro;
 
     public int getIdUsuarioEspecialidad() {
         return idUsuarioEspecialidad;
@@ -17,11 +18,11 @@ public class Usuario_EspecialidadDTO {
         this.idUsuarioEspecialidad = idUsuarioEspecialidad;
     }
 
-    public Usuario getUsuario() {
+    public UsuarioDTO getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(UsuarioDTO usuario) {
         this.usuario = usuario;
     }
 
@@ -33,11 +34,11 @@ public class Usuario_EspecialidadDTO {
         this.especialidad = especialidad;
     }
 
-    public String getFechaDeRegistro() {
+    public LocalDate getFechaDeRegistro() {
         return fechaDeRegistro;
     }
 
-    public void setFechaDeRegistro(String fechaDeRegistro) {
+    public void setFechaDeRegistro(LocalDate fechaDeRegistro) {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 }

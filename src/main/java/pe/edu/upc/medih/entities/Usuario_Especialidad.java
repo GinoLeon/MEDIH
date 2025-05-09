@@ -2,6 +2,8 @@ package pe.edu.upc.medih.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "Usuario_Especialidad")
 public class Usuario_Especialidad {
@@ -15,8 +17,8 @@ public class Usuario_Especialidad {
     @JoinColumn(name="idEspecialidad",nullable=false)
     private Especialidad especialidad;
 
-    @Column(name = "fechaDeRegistro",length=25,nullable=false)
-    private String fechaDeRegistro;
+    @Column(name = "fechaDeRegistro",nullable=false)
+    private LocalDate fechaDeRegistro;
 
     public int getIdUsuarioEspecialidad() {
         return idUsuarioEspecialidad;
@@ -42,11 +44,11 @@ public class Usuario_Especialidad {
         this.especialidad = especialidad;
     }
 
-    public String getFechaDeRegistro() {
+    public LocalDate getFechaDeRegistro() {
         return fechaDeRegistro;
     }
 
-    public void setFechaDeRegistro(String fechaDeRegistro) {
+    public void setFechaDeRegistro(LocalDate fechaDeRegistro) {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 }

@@ -1,12 +1,13 @@
 package pe.edu.upc.medih.dtos;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class HistorialClinicoDTO {
 
     private int idHistorial;
     private int idUsuario;
-    private LocalDateTime fechaRegistro;
+    private LocalDate fechaRegistro;
 
     public int getIdHistorial() {
         return idHistorial;
@@ -24,11 +25,11 @@ public class HistorialClinicoDTO {
         this.idUsuario = idUsuario;
     }
 
-    public LocalDateTime getFechaRegistro() {
+    public LocalDate getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(LocalDateTime fechaRegistro) {
+    public void setFechaRegistro(LocalDate fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 }

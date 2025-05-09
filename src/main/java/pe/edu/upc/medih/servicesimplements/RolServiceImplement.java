@@ -1,5 +1,6 @@
 package pe.edu.upc.medih.servicesimplements;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.medih.entities.Rol;
@@ -7,6 +8,7 @@ import pe.edu.upc.medih.repositories.IRolRepository;
 import pe.edu.upc.medih.servicesinterfaces.IRolService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RolServiceImplement implements IRolService {
@@ -25,7 +27,7 @@ public class RolServiceImplement implements IRolService {
     }
 
     @Override
-    public Rol searchbyId(int id) {
+    public Rol searchbyId(Long id) {
         return rolesServices.findById(id).orElse(new Rol());
     }
 
@@ -35,7 +37,7 @@ public class RolServiceImplement implements IRolService {
     }
 
     @Override
-    public void delete(int id) {
-        rolesServices.deleteById(id);
+    public void deleteRolById(Long id) {
+        rolesServices.deleteRolById(id);
     }
 }

@@ -24,7 +24,7 @@ public interface IHistorialClinicoRepository extends JpaRepository<HistorialClin
 
     @Modifying
     @Transactional
-    @Query("DELETE FROM HistorialClinico h WHERE h.usuario.id = :idPaciente")
+    @Query(value = "DELETE FROM Historial_Clinico h WHERE h.id_usuario = :idPaciente",nativeQuery = true)
     public void eliminarPorPaciente(@Param("idPaciente") Long  idPaciente);
 
 }

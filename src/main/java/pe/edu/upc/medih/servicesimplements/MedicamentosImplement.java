@@ -38,8 +38,6 @@ public class MedicamentosImplement implements IMedicamentoService {
         Mr.deleteById(id);
     }
 
-    @Override
-    public List<String[]> medicamentosMasRecetados() {
-        return Mr.medicamentosMasRecetados();
-    }
+
+
 }

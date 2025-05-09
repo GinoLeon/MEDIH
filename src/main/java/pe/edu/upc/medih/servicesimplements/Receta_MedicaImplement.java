@@ -39,8 +39,4 @@ public class Receta_MedicaImplement implements IReceta_MedicaService {
         recetaMedicaRepository.deleteById(id);
     }
 
-    @Override
-    public List<String[]> cantidadRecetasPorDoctorDesde2025() {
-        return recetaMedicaRepository.cantidadRecetasPorDoctorDesde2025();
-    }
 }

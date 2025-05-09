@@ -18,5 +18,6 @@ public interface IHistorialClinicoRepository extends JpaRepository<HistorialClin
     @Transactional
     @Query("UPDATE HistorialClinico h SET h.usuario = :nuevoUsuario WHERE h.usuario.id = :idPaciente")
     void reasignarHistoriales(@Param("nuevoUsuario") Usuario nuevoUsuario, @Param("idPaciente") long idPaciente);
-
+    @Query("SELECT h FROM HistorialClinico h WHERE h.usuario.id = :idPaciente")
+    List<HistorialClinico> buscarPorPaciente(@Param("idPaciente") int idPaciente);
 }

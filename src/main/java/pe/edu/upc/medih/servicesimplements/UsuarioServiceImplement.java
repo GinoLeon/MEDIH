@@ -31,7 +31,7 @@ public class UsuarioServiceImplement implements IUsuarioService {
     }
 
     @Override
-    public Usuario searchbyId(long id) {
+    public Usuario searchbyId(Long id) {
         return uS.findById(id).orElse(new Usuario());
     }
 
@@ -41,7 +41,7 @@ public class UsuarioServiceImplement implements IUsuarioService {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         uS.deleteById(id);
     }
 
@@ -52,7 +52,7 @@ public class UsuarioServiceImplement implements IUsuarioService {
 
     //calcular edad
     @Override
-    public int calcularEdad(long idUsuario) {
+    public List<String[]> calcularEdad(Long idUsuario) {
         return uS.calcularEdad(idUsuario);
     }
 }

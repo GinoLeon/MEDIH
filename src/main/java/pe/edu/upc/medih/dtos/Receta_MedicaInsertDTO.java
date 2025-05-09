@@ -1,12 +1,11 @@
 package pe.edu.upc.medih.dtos;
-import pe.edu.upc.medih.entities.Usuario;
 
 import java.time.LocalDate;
 
-public class Receta_MedicaDTO {
+public class Receta_MedicaInsertDTO {
     private int idreceta;
-    private UsuarioDTO usuario;
-    private UsuarioDTO doctor;
+    private Long idUsuario;
+    private Long idDoctor;
     private LocalDate fecha;
     private int idListaMedicamentoDetalle;
 
@@ -18,20 +17,20 @@ public class Receta_MedicaDTO {
         this.idreceta = idreceta;
     }
 
-    public UsuarioDTO getUsuario() {
-        return usuario;
+    public Long getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(UsuarioDTO usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public UsuarioDTO getDoctor() {
-        return doctor;
+    public Long getIdDoctor() {
+        return idDoctor;
     }
 
-    public void setDoctor(UsuarioDTO doctor) {
-        this.doctor = doctor;
+    public void setIdDoctor(Long idDoctor) {
+        this.idDoctor = idDoctor;
     }
 
     public LocalDate getFecha() {

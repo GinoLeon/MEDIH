@@ -13,4 +13,5 @@ public interface IReceta_MedicaService {
 
 
     List<Object[]> obtenerMedicamentosRecetados(String fecha);
+    List<Object[]> obtenerRecetasPorPaciente();
 }

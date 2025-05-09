@@ -23,4 +23,12 @@ public interface IReceta_MedicaRepository extends JpaRepository<Receta_Medica, I
             "GROUP BY u.nombreUsuario " +
             "ORDER BY totalRecetas DESC")
     List<Object[]> obtenerMedicamentosRecetados(@Param("fecha") String fecha);
+
+
+    @Query("SELECT u.nombreUsuario AS paciente, COUNT(r) AS totalRecetas " +
+            "FROM Receta_Medica r " +
+            "JOIN r.usuario u " +
+            "GROUP BY u.nombreUsuario " +
+            "ORDER BY totalRecetas DESC")
+    List<Object[]> contarRecetasPorPaciente();
 }

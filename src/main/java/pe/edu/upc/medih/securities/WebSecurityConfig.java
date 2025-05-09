@@ -63,8 +63,7 @@ public class WebSecurityConfig {
                                 antMatcher("/swagger-ui/**"),
                                 antMatcher("/v3/api-docs/**"),
                                 antMatcher("/swagger-resources/**"),
-                                antMatcher("/webjars/**"),
-                                antMatcher("/Hospital/**")
+                                antMatcher("/webjars/**")
                         ).permitAll()
                         .anyRequest().authenticated()
                 )

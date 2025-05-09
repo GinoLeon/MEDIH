@@ -6,14 +6,14 @@ import pe.edu.upc.medih.entities.Usuario;
 import java.util.List;
 
 public interface IUsuarioService {
-    public  List<String[]> calcularEdad(Long idUsuario);//calcular edad
+    public int calcularEdad(long idUsuario);//calcular edad
     public List<Usuario> list();
     public void insert(Usuario a);
 
-    public Usuario searchbyId(Long id);
+    public Usuario searchbyId(long id);
     public void update(Usuario a);
 
-    public void delete(Long id);
+    public void delete(long id);
 
     public List<String[]> ListarCantidadRoles();
 }

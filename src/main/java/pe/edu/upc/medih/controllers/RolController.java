@@ -33,7 +33,7 @@ public class RolController {
     }
 
     @GetMapping("/{id}")
-    public RolDTO listarId(@PathVariable("id") Long id) {
+    public RolDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         RolDTO dto = m.map(rS.searchbyId(id), RolDTO.class);
         return dto;
@@ -47,7 +47,9 @@ public class RolController {
     }
 
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") Long id) {
-        rS.deleteRolById(id);
+    public void eliminar(@PathVariable("id") int id) {
+        rS.delete(id);
     }
+    //prueba
+
 }

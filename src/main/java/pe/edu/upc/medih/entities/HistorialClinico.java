@@ -1,8 +1,6 @@
 package pe.edu.upc.medih.entities;
 
 import jakarta.persistence.*;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,21 +13,18 @@ public class HistorialClinico {
     private int idHistorial;
 
     @Column(name = "fecha_registro", nullable = false)
-    private LocalDate fechaRegistro;
+    private LocalDateTime fechaRegistro;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
+    // Constructor vacío
     public HistorialClinico() {
+        this.fechaRegistro = LocalDateTime.now(); // Asigna fecha automática por defecto
     }
 
-    public HistorialClinico(int idHistorial, LocalDate fechaRegistro, Usuario usuario) {
-        this.idHistorial = idHistorial;
-        this.fechaRegistro = fechaRegistro;
-        this.usuario = usuario;
-    }
-
+    // Getters y Setters
     public int getIdHistorial() {
         return idHistorial;
     }
@@ -38,11 +33,11 @@ public class HistorialClinico {
         this.idHistorial = idHistorial;
     }
 
-    public LocalDate getFechaRegistro() {
+    public LocalDateTime getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(LocalDate fechaRegistro) {
+    public void setFechaRegistro(LocalDateTime fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 

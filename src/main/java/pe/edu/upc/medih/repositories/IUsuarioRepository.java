@@ -32,9 +32,9 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
     public List<String[]> ListarCantidadRoles();
 
     //Calcular Edad
-    @Query(value = " SELECT u.id,u.nombre_usuario,DATE_PART('year', AGE(CURRENT_DATE, u.fecha_nacimiento_usuario)) AS edad\n" +
-            " FROM usuarios u\n" +
-            " WHERE u.id = :idUsuario;", nativeQuery = true)
-    public List<String[]> calcularEdad(@Param("idUsuario") Long idUsuario);
+    @Query(value = "SELECT TIMESTAMPDIFF(YEAR, u.fecha_nacimiento_usuario, CURDATE()) AS edad " +
+            "FROM usuarios u " +
+            "WHERE u.id = :idUsuario", nativeQuery = true)
+    int calcularEdad(@Param("idUsuario") long idUsuario);
 
 }

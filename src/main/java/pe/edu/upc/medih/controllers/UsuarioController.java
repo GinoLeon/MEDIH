@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.medih.dtos.UsuarioDTO;
 import pe.edu.upc.medih.dtos.queries.CantidadRolDTO;
-import pe.edu.upc.medih.dtos.queries.EdadUsuarioDTO;
 import pe.edu.upc.medih.entities.Usuario;
 import pe.edu.upc.medih.servicesinterfaces.IUsuarioService;
 
@@ -36,7 +35,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public UsuarioDTO listarId(@PathVariable("id") Long id) {
+    public UsuarioDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         UsuarioDTO dto = m.map(uS.searchbyId(id), UsuarioDTO.class);
         return dto;
@@ -50,7 +49,7 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") Long id) {
+    public void eliminar(@PathVariable("id") int id) {
         uS.delete(id);
     }
 
@@ -68,17 +67,8 @@ public class UsuarioController {
     }
 
     // Calcular Edad
-    @GetMapping("/CalcularEdad")
-    public List<EdadUsuarioDTO> calcularEdad(@RequestParam Long idUsuario) {
-        List<EdadUsuarioDTO> dtolista = new ArrayList<>();
-        List<String[]> fila= uS.calcularEdad(idUsuario);
-        for (String[]columna : fila) {
-            EdadUsuarioDTO dto = new EdadUsuarioDTO();
-            dto.setId(Integer.parseInt(columna[0]));
-            dto.setName(columna[1]);
-            dto.setEdad(Double.parseDouble(columna[2]));
-            dtolista.add(dto);
-        }
-        return dtolista;
+    @GetMapping("/CalcularEdad/{id}")
+    public int calcularEdad(@PathVariable("id") long id) {
+        return uS.calcularEdad(id);
     }
 }

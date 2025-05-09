@@ -1,14 +1,13 @@
 package pe.edu.upc.medih.dtos;
 import pe.edu.upc.medih.entities.Usuario;
-
 import java.time.LocalDate;
 
 public class Receta_MedicaDTO {
     private int idreceta;
-    private UsuarioDTO usuario;
-    private UsuarioDTO doctor;
+    private int idUsuario;
+    private Usuario iddoctor;
     private LocalDate fecha;
-    private int idListaMedicamentoDetalle;
+    private int idlista_medicamento_detalle;
 
     public int getIdreceta() {
         return idreceta;
@@ -18,20 +17,12 @@ public class Receta_MedicaDTO {
         this.idreceta = idreceta;
     }
 
-    public UsuarioDTO getUsuario() {
-        return usuario;
+    public int getIdlista_medicamento_detalle() {
+        return idlista_medicamento_detalle;
     }
 
-    public void setUsuario(UsuarioDTO usuario) {
-        this.usuario = usuario;
-    }
-
-    public UsuarioDTO getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(UsuarioDTO doctor) {
-        this.doctor = doctor;
+    public void setIdlista_medicamento_detalle(int idlista_medicamento_detalle) {
+        this.idlista_medicamento_detalle = idlista_medicamento_detalle;
     }
 
     public LocalDate getFecha() {
@@ -42,11 +33,19 @@ public class Receta_MedicaDTO {
         this.fecha = fecha;
     }
 
-    public int getIdListaMedicamentoDetalle() {
-        return idListaMedicamentoDetalle;
+    public Usuario getIddoctor() {
+        return iddoctor;
     }
 
-    public void setIdListaMedicamentoDetalle(int idListaMedicamentoDetalle) {
-        this.idListaMedicamentoDetalle = idListaMedicamentoDetalle;
+    public void setIddoctor(Usuario iddoctor) {
+        this.iddoctor = iddoctor;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

@@ -63,4 +63,9 @@ public class HistorialClinicoController {
             return mapper.map(hc, HistorialClinicoDTO.class);
         }).collect(Collectors.toList());
     }
+
+    @DeleteMapping
+    public void eliminarPorPaciente(@PathVariable("idPaciente") Long idPaciente) {
+        hcS.eliminarPorPaciente(idPaciente);
+    }
 }

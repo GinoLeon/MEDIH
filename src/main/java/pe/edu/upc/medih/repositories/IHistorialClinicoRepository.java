@@ -17,11 +17,14 @@ public interface IHistorialClinicoRepository extends JpaRepository<HistorialClin
     @Query(value = "SELECT * FROM historial_clinico h WHERE id_usuario = :pacienteId",nativeQuery = true)
     public List<HistorialClinico> findByPacienteId(@Param("pacienteId") Integer pacienteId);
 
-    @Modifying
-    @Transactional
-    @Query("UPDATE HistorialClinico h SET h.usuario = :nuevoUsuario WHERE h.usuario.id = :idPaciente")
-    void reasignarHistoriales(@Param("nuevoUsuario") Usuario nuevoUsuario, @Param("idPaciente") long idPaciente);
+
 
     @Query("SELECT h FROM HistorialClinico h WHERE h.usuario.id = :idPaciente")
     public List<HistorialClinico> buscarPorPaciente(@Param("idPaciente") int idPaciente);
+
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM Historial_Clinico h WHERE h.id_usuario = :idPaciente",nativeQuery = true)
+    public void eliminarPorPaciente(@Param("idPaciente") Long  idPaciente);
+
 }

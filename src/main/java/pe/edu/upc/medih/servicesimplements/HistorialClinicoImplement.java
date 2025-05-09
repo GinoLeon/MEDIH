@@ -44,4 +44,9 @@ public class HistorialClinicoImplement implements IHistorialClinicoService {
     public List<HistorialClinico> listByUsuarioId(int usuarioId) {
         return hcR.findByPacienteId(usuarioId);
     }
+
+    @Override
+    public void eliminarPorPaciente(Long idPaciente) {
+        hcR.eliminarPorPaciente(idPaciente);
+    }
 }

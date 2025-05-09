@@ -1,5 +1,6 @@
 package pe.edu.upc.medih.servicesinterfaces;
 
+import org.springframework.data.repository.query.Param;
 import pe.edu.upc.medih.entities.HistorialClinico;
 
 import java.util.List;
@@ -11,4 +12,5 @@ public interface IHistorialClinicoService {
     public void delete(int id);
     public void update(HistorialClinico historial);
     public List<HistorialClinico> listByUsuarioId(int usuarioId); // query
+    public void eliminarPorPaciente(Long  idPaciente);
 }

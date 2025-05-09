@@ -54,4 +54,13 @@ public class HistorialClinicoController {
     public void eliminar(@PathVariable("id") int id) {
         hcS.delete(id);
     }
+
+    @GetMapping("/usuario/{idUsuario}")
+    public List<HistorialClinicoDTO> listarPorUsuario(@PathVariable("idUsuario") int idUsuario) {
+        log.info("Listado de historiales clínicos del usuario con ID: {}", idUsuario);
+        return hcS.listByUsuarioId(idUsuario).stream().map(hc -> {
+            ModelMapper mapper = new ModelMapper();
+            return mapper.map(hc, HistorialClinicoDTO.class);
+        }).collect(Collectors.toList());
+    }
 }

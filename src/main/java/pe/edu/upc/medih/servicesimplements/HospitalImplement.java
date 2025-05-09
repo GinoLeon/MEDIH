@@ -39,4 +39,9 @@ public class HospitalImplement implements IHospitalService {
     public void update(Hospital hospital) {
         hR.save(hospital);
     }
+
+    @Override
+    public List<String[]> getDistanciaKm(double latitud, double longitud) {
+        return hR.getDistanciaKm(latitud, longitud);
+    }
 }

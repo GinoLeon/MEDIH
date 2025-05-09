@@ -10,4 +10,5 @@ public interface IHistorialClinicoService {
     public HistorialClinico searchById(int id);
     public void delete(int id);
     public void update(HistorialClinico historial);
+    public List<HistorialClinico> listByUsuarioId(int usuarioId); // query
 }

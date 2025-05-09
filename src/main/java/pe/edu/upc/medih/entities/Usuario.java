@@ -1,9 +1,6 @@
 package pe.edu.upc.medih.entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-
-import javax.management.relation.Role;
 import java.io.Serializable;
 import java.util.List;
 

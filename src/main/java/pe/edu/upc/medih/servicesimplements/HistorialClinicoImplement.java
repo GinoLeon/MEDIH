@@ -40,4 +40,8 @@ public class HistorialClinicoImplement implements IHistorialClinicoService {
     public void update(HistorialClinico historial) {
         hcR.save(historial);
     }
+    @Override
+    public List<HistorialClinico> listByUsuarioId(int usuarioId) {
+        return hcR.findByPacienteId(usuarioId);
+    }
 }

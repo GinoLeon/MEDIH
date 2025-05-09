@@ -1,9 +1,14 @@
 package pe.edu.upc.medih.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import pe.edu.upc.medih.entities.HistorialClinico;
 
+import java.util.List;
+
 public interface IHistorialClinicoRepository extends JpaRepository<HistorialClinico, Integer> {
-    @Query
+       // obitene todos los historiales cloiinicos de un paciente segun id
+    @Query(value = "SELECT * FROM historial_clinico h WHERE id_usuario = :pacienteId",nativeQuery = true)
+    List<HistorialClinico> findByPacienteId(@Param("pacienteId") Integer pacienteId);
 }

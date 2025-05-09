@@ -38,4 +38,19 @@ public class DiagnosticoServiceImpl implements IDiagnosticoService {
     public void update(Diagnostico diagnostico) {
         diagnosticoRepository.save(diagnostico);
     }
+
+    @Override
+    public void deleteByEstado(String estado) {
+        diagnosticoRepository.deleteByEstado(estado);
+    }
+
+    @Override
+    public List<Diagnostico> findByDescripcionContaining(String descripcion) {
+        return diagnosticoRepository.findByDescripcionContaining(descripcion);
+    }
+
+    @Override
+    public List<Diagnostico> findRecentDiagnosticos(String fecha) {
+        return diagnosticoRepository.findRecentDiagnosticos(fecha);
+    }
 }

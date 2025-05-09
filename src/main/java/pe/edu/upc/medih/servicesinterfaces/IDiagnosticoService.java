@@ -10,4 +10,7 @@ public interface IDiagnosticoService {
     void delete(int id);
     Diagnostico findById(int id);
     void update(Diagnostico diagnostico);
+    void deleteByEstado(String estado);
+    List<Diagnostico> findByDescripcionContaining(String descripcion);
+    List<Diagnostico> findRecentDiagnosticos(String fecha);
 }

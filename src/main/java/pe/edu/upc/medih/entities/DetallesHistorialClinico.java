@@ -13,24 +13,34 @@ public class DetallesHistorialClinico {
     @JoinColumn(name = "id_historial", nullable = false)
     private HistorialClinico historialClinico;
 
-    @Column(name = "id_tratamiento", nullable = false)
-    private int idTratamiento;
+    @ManyToOne
+    @JoinColumn(name = "id_Tratamiento", nullable = false)
+    private Tratamiento idTratamiento;
 
     @ManyToOne
     @JoinColumn(name = "id_examen", nullable = false)
     private Examen_Medico examenMedico;
 
     @ManyToOne
-    @JoinColumn(name = "id_medicamento_detalle", nullable = false)
+    @JoinColumn(name = "idListaMedicamento", nullable = false)
     private ListaMedicamentosDetalle medicamentoDetalle;
 
-    @Column(name = "id_diagnostico", nullable = false)
-    private int idDiagnostico;
+    @ManyToOne
+    @JoinColumn(name = "idDiagnostico", nullable = false)
+    private Diagnostico idDiagnostico;
 
     public DetallesHistorialClinico() {
     }
 
-    // Getters y Setters
+    public DetallesHistorialClinico(int idDetalleHistorial, HistorialClinico historialClinico, Tratamiento idTratamiento, Examen_Medico examenMedico, ListaMedicamentosDetalle medicamentoDetalle, Diagnostico idDiagnostico) {
+        this.idDetalleHistorial = idDetalleHistorial;
+        this.historialClinico = historialClinico;
+        this.idTratamiento = idTratamiento;
+        this.examenMedico = examenMedico;
+        this.medicamentoDetalle = medicamentoDetalle;
+        this.idDiagnostico = idDiagnostico;
+    }
+
     public int getIdDetalleHistorial() {
         return idDetalleHistorial;
     }
@@ -47,11 +57,11 @@ public class DetallesHistorialClinico {
         this.historialClinico = historialClinico;
     }
 
-    public int getIdTratamiento() {
+    public Tratamiento getIdTratamiento() {
         return idTratamiento;
     }
 
-    public void setIdTratamiento(int idTratamiento) {
+    public void setIdTratamiento(Tratamiento idTratamiento) {
         this.idTratamiento = idTratamiento;
     }
 
@@ -71,11 +81,11 @@ public class DetallesHistorialClinico {
         this.medicamentoDetalle = medicamentoDetalle;
     }
 
-    public int getIdDiagnostico() {
+    public Diagnostico getIdDiagnostico() {
         return idDiagnostico;
     }
 
-    public void setIdDiagnostico(int idDiagnostico) {
+    public void setIdDiagnostico(Diagnostico idDiagnostico) {
         this.idDiagnostico = idDiagnostico;
     }
 }

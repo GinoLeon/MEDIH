@@ -1,8 +1,12 @@
 package pe.edu.upc.medih.dtos;
 
+import java.time.LocalDateTime;
+
 public class DiagnosticoDTO {
     private int id;
     private String descripcion;
+    private LocalDateTime fecha;
+    private long usuarioId;
 
     public int getId() {
         return id;
@@ -18,5 +22,21 @@ public class DiagnosticoDTO {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
+
+    public long getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(long usuarioId) {
+        this.usuarioId = usuarioId;
     }
 }

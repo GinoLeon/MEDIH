@@ -1,6 +1,7 @@
 package pe.edu.upc.medih.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.medih.dtos.DiagnosticoDTO;
 import pe.edu.upc.medih.entities.Diagnostico;
@@ -16,42 +17,35 @@ public class DiagnosticoController {
     @Autowired
     private IDiagnosticoService diagnosticoService;
 
-    @PostMapping
-    public void insert(@RequestBody DiagnosticoDTO diagnosticoDTO) {
-        Diagnostico diagnostico = new Diagnostico();
-        diagnostico.setDescripcion(diagnosticoDTO.getDescripcion());
-        diagnosticoService.insert(diagnostico);
-    }
-
-    @GetMapping
-    public List<DiagnosticoDTO> list() {
-        return diagnosticoService.list().stream().map(d -> {
+    @GetMapping("/descripcion/{descripcion}")
+    public ResponseEntity<List<DiagnosticoDTO>> findByDescripcion(@PathVariable("descripcion") String descripcion) {
+        List<DiagnosticoDTO> diagnosticos = diagnosticoService.findByDescripcionContaining(descripcion).stream().map(d -> {
             DiagnosticoDTO dto = new DiagnosticoDTO();
-            dto.setId(d.getId());
+            dto.setId(d.getIdDiagnostico());
             dto.setDescripcion(d.getDescripcion());
+            dto.setUsuarioId(d.getUsuario().getId());
+            dto.setFecha(d.getFecha());
             return dto;
         }).collect(Collectors.toList());
+        return ResponseEntity.ok(diagnosticos);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") int id) {
-        diagnosticoService.delete(id);
+    @GetMapping("/recientes/{fecha}")
+    public ResponseEntity<List<DiagnosticoDTO>> findRecentDiagnosticos(@PathVariable("fecha") String fecha) {
+        List<DiagnosticoDTO> diagnosticos = diagnosticoService.findRecentDiagnosticos(fecha).stream().map(d -> {
+            DiagnosticoDTO dto = new DiagnosticoDTO();
+            dto.setId(d.getIdDiagnostico());
+            dto.setDescripcion(d.getDescripcion());
+            dto.setUsuarioId(d.getUsuario().getId());
+            dto.setFecha(d.getFecha());
+            return dto;
+        }).collect(Collectors.toList());
+        return ResponseEntity.ok(diagnosticos);
     }
 
-    @GetMapping("/{id}")
-    public DiagnosticoDTO findById(@PathVariable("id") int id) {
-        Diagnostico diagnostico = diagnosticoService.findById(id);
-        DiagnosticoDTO dto = new DiagnosticoDTO();
-        dto.setId(diagnostico.getId());
-        dto.setDescripcion(diagnostico.getDescripcion());
-        return dto;
-    }
-
-    @PutMapping
-    public void update(@RequestBody DiagnosticoDTO diagnosticoDTO) {
-        Diagnostico diagnostico = new Diagnostico();
-        diagnostico.setId(diagnosticoDTO.getId());
-        diagnostico.setDescripcion(diagnosticoDTO.getDescripcion());
-        diagnosticoService.update(diagnostico);
+    @DeleteMapping("/estado/{estado}")
+    public ResponseEntity<String> deleteByEstado(@PathVariable("estado") String estado) {
+        diagnosticoService.deleteByEstado(estado);
+        return ResponseEntity.ok("Diagnósticos con estado '" + estado + "' eliminados correctamente.");
     }
 }

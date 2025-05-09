@@ -13,7 +13,7 @@ public class UsuarioDTO {
     private String contraseniaUsuario;
     private String fechaNacimientoUsuario;
     private String disponibilidadUsuario;
-    private List<RolDTO> roles;
+    private int edad; // Nuevo campo para la edad
 
     public int getIdUsuario() {
         return idUsuario;
@@ -79,11 +79,12 @@ public class UsuarioDTO {
         this.disponibilidadUsuario = disponibilidadUsuario;
     }
 
-    public List<RolDTO> getRoles() {
-        return roles;
+    public int getEdad() { // Getter para la edad
+        return edad;
     }
 
-    public void setRoles(List<RolDTO> roles) {
-        this.roles = roles;
+    public void setEdad(int edad) { // Setter para la edad
+        this.edad = edad;
     }
+
 }

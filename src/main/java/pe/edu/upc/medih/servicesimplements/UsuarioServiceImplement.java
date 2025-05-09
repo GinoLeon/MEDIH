@@ -49,4 +49,10 @@ public class UsuarioServiceImplement implements IUsuarioService {
     public List<String[]> ListarCantidadRoles() {
         return uS.ListarCantidadRoles();
     }
+
+    //calcular edad
+    @Override
+    public int calcularEdad(long idUsuario) {
+        return uS.calcularEdad(idUsuario);
+    }
 }

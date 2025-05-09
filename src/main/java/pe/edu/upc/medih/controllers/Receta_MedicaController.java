@@ -4,9 +4,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.medih.dtos.Receta_MedicaDTO;
+import pe.edu.upc.medih.dtos.queries.CantidadRolDTO;
+import pe.edu.upc.medih.dtos.queries.DoctorRecetasDTO;
 import pe.edu.upc.medih.entities.Receta_Medica;
 import pe.edu.upc.medih.servicesinterfaces.IReceta_MedicaService;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,8 +63,16 @@ public class Receta_MedicaController {
 
 
     @GetMapping("/medicamentos-recetados")
-    public List<Object[]> obtenerMedicamentosRecetados(@RequestParam String fecha) {
-        return rM.obtenerMedicamentosRecetados(fecha);
+    public List<DoctorRecetasDTO> obtenerMedicamentosRecetados(@RequestParam LocalDate fecha) {
+        List<DoctorRecetasDTO> dtolista = new ArrayList<>();
+        List<String[]> fila= rM.obtenerMedicamentosRecetados(fecha);
+        for (String[]columna : fila) {
+            DoctorRecetasDTO dto = new DoctorRecetasDTO();
+            dto.setName(columna[0]);
+            dto.setDoctorId(Integer.parseInt(columna[1]));
+            dtolista.add(dto);
+        }
+        return dtolista;
     }
 
 

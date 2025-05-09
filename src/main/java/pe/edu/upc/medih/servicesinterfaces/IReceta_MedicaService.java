@@ -1,6 +1,8 @@
 package pe.edu.upc.medih.servicesinterfaces;
 
 import pe.edu.upc.medih.entities.Receta_Medica;
+
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IReceta_MedicaService {
@@ -12,6 +14,6 @@ public interface IReceta_MedicaService {
     void delete(int id);
 
 
-    List<Object[]> obtenerMedicamentosRecetados(String fecha);
+    List<String[]> obtenerMedicamentosRecetados(LocalDate fecha);
     List<Object[]> obtenerRecetasPorPaciente();
 }

@@ -6,6 +6,7 @@ import pe.edu.upc.medih.entities.Receta_Medica;
 import pe.edu.upc.medih.repositories.IReceta_MedicaRepository;
 import pe.edu.upc.medih.servicesinterfaces.IReceta_MedicaService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -46,7 +47,7 @@ public class Receta_MedicaImplement implements IReceta_MedicaService {
     }
 
     @Override
-    public List<Object[]> obtenerMedicamentosRecetados(String fecha) {
+    public List<String[]> obtenerMedicamentosRecetados(LocalDate fecha) {
         return recetaMedicaRepository.obtenerMedicamentosRecetados(fecha);
     }
 

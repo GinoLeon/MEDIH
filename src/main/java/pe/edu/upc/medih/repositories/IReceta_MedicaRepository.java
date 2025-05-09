@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import pe.edu.upc.medih.entities.Receta_Medica;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -16,13 +17,13 @@ public interface IReceta_MedicaRepository extends JpaRepository<Receta_Medica, I
     List<Object[]> countRecetasByDoctor();
 
 
-    @Query("SELECT u.nombreUsuario AS nombreDoctor, COUNT(r.idReceta) AS totalRecetas " +
-            "FROM Receta_Medica r " +
-            "JOIN r.doctor u " +
-            "WHERE r.fecha > :fecha " +
-            "GROUP BY u.nombreUsuario " +
-            "ORDER BY totalRecetas DESC")
-    List<Object[]> obtenerMedicamentosRecetados(@Param("fecha") String fecha);
+    @Query(value = "SELECT u.nombre_usuario AS nombreDoctor, COUNT(r.id_receta) AS totalRecetas \n" +
+            "            FROM Recetas_Medicas r \n" +
+            "            JOIN usuarios u ON r.id_doctor = u.id \n" +
+            "            WHERE r.fecha > :fecha \n" +
+            "            GROUP BY u.nombre_usuario \n" +
+            "            ORDER BY totalRecetas DESC",nativeQuery = true)
+    public List<String[]> obtenerMedicamentosRecetados(@Param("fecha") LocalDate fecha);
 
 
     @Query("SELECT u.nombreUsuario AS paciente, COUNT(r) AS totalRecetas " +

@@ -1,22 +1,22 @@
 package pe.edu.upc.medih.dtos.queries;
 
 public class DoctorRecetasDTO {
-    private String name;
-    private int doctorId;
+    private String nombreDoctor;
+    private int CantiadRecetas;
 
-    public String getName() {
-        return name;
+    public String getNombreDoctor() {
+        return nombreDoctor;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNombreDoctor(String nombreDoctor) {
+        this.nombreDoctor = nombreDoctor;
     }
 
-    public int getDoctorId() {
-        return doctorId;
+    public int getCantiadRecetas() {
+        return CantiadRecetas;
     }
 
-    public void setDoctorId(int doctorId) {
-        this.doctorId = doctorId;
+    public void setCantiadRecetas(int cantiadRecetas) {
+        CantiadRecetas = cantiadRecetas;
     }
 }

@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 public class HistorialClinicoDTO {
 
     private int idHistorial;
-    private int idUsuario;
+    private Long idUsuario;
     private LocalDate fechaRegistro;
 
     public int getIdHistorial() {
@@ -17,11 +17,11 @@ public class HistorialClinicoDTO {
         this.idHistorial = idHistorial;
     }
 
-    public int getIdUsuario() {
+    public Long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
 

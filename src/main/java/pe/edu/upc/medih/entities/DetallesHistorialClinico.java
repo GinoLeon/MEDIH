@@ -15,30 +15,30 @@ public class DetallesHistorialClinico {
 
     @ManyToOne
     @JoinColumn(name = "id_Tratamiento", nullable = false)
-    private Tratamiento idTratamiento;
+    private Tratamiento tratamiento;
 
     @ManyToOne
     @JoinColumn(name = "id_examen", nullable = false)
     private Examen_Medico examenMedico;
 
-    @ManyToOne
-    @JoinColumn(name = "idListaMedicamento", nullable = false)
-    private ListaMedicamentosDetalle medicamentoDetalle;
+
+    @Column(name = "idListaMedicamento",nullable = false)
+    private int idListaMedicamento;
 
     @ManyToOne
     @JoinColumn(name = "idDiagnostico", nullable = false)
-    private Diagnostico idDiagnostico;
+    private Diagnostico Diagnostico;
 
     public DetallesHistorialClinico() {
     }
 
-    public DetallesHistorialClinico(int idDetalleHistorial, HistorialClinico historialClinico, Tratamiento idTratamiento, Examen_Medico examenMedico, ListaMedicamentosDetalle medicamentoDetalle, Diagnostico idDiagnostico) {
+    public DetallesHistorialClinico(int idDetalleHistorial, HistorialClinico historialClinico, Tratamiento tratamiento, Examen_Medico examenMedico, int idListaMedicamento, Diagnostico diagnostico) {
         this.idDetalleHistorial = idDetalleHistorial;
         this.historialClinico = historialClinico;
-        this.idTratamiento = idTratamiento;
+        this.tratamiento = tratamiento;
         this.examenMedico = examenMedico;
-        this.medicamentoDetalle = medicamentoDetalle;
-        this.idDiagnostico = idDiagnostico;
+        this.idListaMedicamento = idListaMedicamento;
+        Diagnostico = diagnostico;
     }
 
     public int getIdDetalleHistorial() {
@@ -57,12 +57,12 @@ public class DetallesHistorialClinico {
         this.historialClinico = historialClinico;
     }
 
-    public Tratamiento getIdTratamiento() {
-        return idTratamiento;
+    public Tratamiento getTratamiento() {
+        return tratamiento;
     }
 
-    public void setIdTratamiento(Tratamiento idTratamiento) {
-        this.idTratamiento = idTratamiento;
+    public void setTratamiento(Tratamiento tratamiento) {
+        this.tratamiento = tratamiento;
     }
 
     public Examen_Medico getExamenMedico() {
@@ -73,19 +73,19 @@ public class DetallesHistorialClinico {
         this.examenMedico = examenMedico;
     }
 
-    public ListaMedicamentosDetalle getMedicamentoDetalle() {
-        return medicamentoDetalle;
+    public int getIdListaMedicamento() {
+        return idListaMedicamento;
     }
 
-    public void setMedicamentoDetalle(ListaMedicamentosDetalle medicamentoDetalle) {
-        this.medicamentoDetalle = medicamentoDetalle;
+    public void setIdListaMedicamento(int idListaMedicamento) {
+        this.idListaMedicamento = idListaMedicamento;
     }
 
-    public Diagnostico getIdDiagnostico() {
-        return idDiagnostico;
+    public Diagnostico getDiagnostico() {
+        return Diagnostico;
     }
 
-    public void setIdDiagnostico(Diagnostico idDiagnostico) {
-        this.idDiagnostico = idDiagnostico;
+    public void setDiagnostico(Diagnostico diagnostico) {
+        Diagnostico = diagnostico;
     }
 }

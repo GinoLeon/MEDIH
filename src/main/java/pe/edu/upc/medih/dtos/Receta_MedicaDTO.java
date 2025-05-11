@@ -1,36 +1,40 @@
 package pe.edu.upc.medih.dtos;
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import pe.edu.upc.medih.entities.Usuario;
 
 import java.time.LocalDate;
 
 public class Receta_MedicaDTO {
-    private int idreceta;
-    private UsuarioDTO usuario;
-    private UsuarioDTO doctor;
+
+    private int idReceta;
+    private UsuarioListDTO usuario;
+    private UsuarioListDTO doctor;
     private LocalDate fecha;
     private int idListaMedicamentoDetalle;
 
-    public int getIdreceta() {
-        return idreceta;
+    public int getIdReceta() {
+        return idReceta;
     }
 
-    public void setIdreceta(int idreceta) {
-        this.idreceta = idreceta;
+    public void setIdReceta(int idReceta) {
+        this.idReceta = idReceta;
     }
 
-    public UsuarioDTO getUsuario() {
+    public UsuarioListDTO getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(UsuarioDTO usuario) {
+    public void setUsuario(UsuarioListDTO usuario) {
         this.usuario = usuario;
     }
 
-    public UsuarioDTO getDoctor() {
+    public UsuarioListDTO getDoctor() {
         return doctor;
     }
 
-    public void setDoctor(UsuarioDTO doctor) {
+    public void setDoctor(UsuarioListDTO doctor) {
         this.doctor = doctor;
     }
 

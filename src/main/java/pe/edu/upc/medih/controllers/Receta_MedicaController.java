@@ -68,8 +68,8 @@ public class Receta_MedicaController {
         List<String[]> fila= rM.obtenerMedicamentosRecetados(fecha);
         for (String[]columna : fila) {
             DoctorRecetasDTO dto = new DoctorRecetasDTO();
-            dto.setName(columna[0]);
-            dto.setDoctorId(Integer.parseInt(columna[1]));
+            dto.setNombreDoctor(columna[0]);
+            dto.setCantiadRecetas(Integer.parseInt(columna[1]));
             dtolista.add(dto);
         }
         return dtolista;

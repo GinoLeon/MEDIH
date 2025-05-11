@@ -12,5 +12,5 @@ public interface IHistorialClinicoService {
     public void delete(int id);
     public void update(HistorialClinico historial);
     public List<HistorialClinico> listByUsuarioId(int usuarioId); // query
-    public void eliminarPorPaciente(Long  idPaciente);
+    public boolean eliminarPorPaciente(Long idPaciente);
 }

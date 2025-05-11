@@ -2,6 +2,7 @@ package pe.edu.upc.medih.servicesimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.medih.entities.Especialidad;
 import pe.edu.upc.medih.entities.HistorialClinico;
 import pe.edu.upc.medih.repositories.IHistorialClinicoRepository;
 import pe.edu.upc.medih.servicesinterfaces.IHistorialClinicoService;
@@ -27,8 +28,7 @@ public class HistorialClinicoImplement implements IHistorialClinicoService {
 
     @Override
     public HistorialClinico searchById(int id) {
-        Optional<HistorialClinico> optional = hcR.findById(id);
-        return optional.orElse(null);
+        return hcR.findById(id).orElse(new HistorialClinico());
     }
 
     @Override
@@ -46,7 +46,8 @@ public class HistorialClinicoImplement implements IHistorialClinicoService {
     }
 
     @Override
-    public void eliminarPorPaciente(Long idPaciente) {
-        hcR.eliminarPorPaciente(idPaciente);
+    public boolean eliminarPorPaciente(Long idPaciente) {
+        int filasEliminadas =hcR.eliminarPorPaciente(idPaciente);
+        return filasEliminadas > 0;
     }
 }

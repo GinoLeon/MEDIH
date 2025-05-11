@@ -1,14 +1,16 @@
 package pe.edu.upc.medih.dtos;
 
+import jakarta.persistence.*;
+import pe.edu.upc.medih.entities.*;
+
 public class DetallesHistorialClinicoDTO {
     private int idDetalleHistorial;
-    private int idHistorial;
-    private int idTratamiento;
-    private int idExamen;
-    private int idMedicamentoDetalle;
-    private int idDiagnostico;
+    private HistorialClinicoDTO historialClinico;
+    private Tratamiento tratamiento;
+    private Examen_Medico examenMedico;
+    private int idListaMedicamento;
+    private DiagnosticoDTO Diagnostico;
 
-    // Getters y Setters
     public int getIdDetalleHistorial() {
         return idDetalleHistorial;
     }
@@ -17,43 +19,43 @@ public class DetallesHistorialClinicoDTO {
         this.idDetalleHistorial = idDetalleHistorial;
     }
 
-    public int getIdHistorial() {
-        return idHistorial;
+    public HistorialClinicoDTO getHistorialClinico() {
+        return historialClinico;
     }
 
-    public void setIdHistorial(int idHistorial) {
-        this.idHistorial = idHistorial;
+    public void setHistorialClinico(HistorialClinicoDTO historialClinico) {
+        this.historialClinico = historialClinico;
     }
 
-    public int getIdTratamiento() {
-        return idTratamiento;
+    public Tratamiento getTratamiento() {
+        return tratamiento;
     }
 
-    public void setIdTratamiento(int idTratamiento) {
-        this.idTratamiento = idTratamiento;
+    public void setTratamiento(Tratamiento tratamiento) {
+        this.tratamiento = tratamiento;
     }
 
-    public int getIdExamen() {
-        return idExamen;
+    public Examen_Medico getExamenMedico() {
+        return examenMedico;
     }
 
-    public void setIdExamen(int idExamen) {
-        this.idExamen = idExamen;
+    public void setExamenMedico(Examen_Medico examenMedico) {
+        this.examenMedico = examenMedico;
     }
 
-    public int getIdMedicamentoDetalle() {
-        return idMedicamentoDetalle;
+    public int getIdListaMedicamento() {
+        return idListaMedicamento;
     }
 
-    public void setIdMedicamentoDetalle(int idMedicamentoDetalle) {
-        this.idMedicamentoDetalle = idMedicamentoDetalle;
+    public void setIdListaMedicamento(int idListaMedicamento) {
+        this.idListaMedicamento = idListaMedicamento;
     }
 
-    public int getIdDiagnostico() {
-        return idDiagnostico;
+    public DiagnosticoDTO getDiagnostico() {
+        return Diagnostico;
     }
 
-    public void setIdDiagnostico(int idDiagnostico) {
-        this.idDiagnostico = idDiagnostico;
+    public void setDiagnostico(DiagnosticoDTO diagnostico) {
+        Diagnostico = diagnostico;
     }
 }

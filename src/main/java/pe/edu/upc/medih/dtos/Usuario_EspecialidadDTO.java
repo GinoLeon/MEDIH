@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public class Usuario_EspecialidadDTO {
     private int idUsuarioEspecialidad;
-    private UsuarioDTO usuario;
+    private UsuarioListDTO usuario;
     private Especialidad especialidad;
     private LocalDate fechaDeRegistro;
 
@@ -18,11 +18,11 @@ public class Usuario_EspecialidadDTO {
         this.idUsuarioEspecialidad = idUsuarioEspecialidad;
     }
 
-    public UsuarioDTO getUsuario() {
+    public UsuarioListDTO getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(UsuarioDTO usuario) {
+    public void setUsuario(UsuarioListDTO usuario) {
         this.usuario = usuario;
     }
 

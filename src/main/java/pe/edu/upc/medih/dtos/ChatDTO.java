@@ -1,20 +1,16 @@
 package pe.edu.upc.medih.dtos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import pe.edu.upc.medih.entities.Usuario;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class ChatDTO {
     private int chatId;
     private String mensaje;
-    private LocalDateTime fechaEnvio;
+    private LocalDate fechaEnvio;
     private String tipoMensaje;
+    private Long  PacienteID;
+    private Long DoctorID;
     private boolean leido;
-    private Usuario paciente;
-    private Usuario doctor;
 
     public int getChatId() {
         return chatId;
@@ -32,11 +28,11 @@ public class ChatDTO {
         this.mensaje = mensaje;
     }
 
-    public LocalDateTime getFechaEnvio() {
+    public LocalDate getFechaEnvio() {
         return fechaEnvio;
     }
 
-    public void setFechaEnvio(LocalDateTime fechaEnvio) {
+    public void setFechaEnvio(LocalDate fechaEnvio) {
         this.fechaEnvio = fechaEnvio;
     }
 
@@ -48,27 +44,27 @@ public class ChatDTO {
         this.tipoMensaje = tipoMensaje;
     }
 
+    public Long getPacienteID() {
+        return PacienteID;
+    }
+
+    public void setPacienteID(Long pacienteID) {
+        PacienteID = pacienteID;
+    }
+
+    public Long getDoctorID() {
+        return DoctorID;
+    }
+
+    public void setDoctorID(Long doctorID) {
+        DoctorID = doctorID;
+    }
+
     public boolean isLeido() {
         return leido;
     }
 
     public void setLeido(boolean leido) {
         this.leido = leido;
-    }
-
-    public Usuario getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(Usuario paciente) {
-        this.paciente = paciente;
-    }
-
-    public Usuario getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Usuario doctor) {
-        this.doctor = doctor;
     }
 }

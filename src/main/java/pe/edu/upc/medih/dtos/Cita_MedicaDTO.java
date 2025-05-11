@@ -2,14 +2,15 @@ package pe.edu.upc.medih.dtos;
 
 import pe.edu.upc.medih.entities.Usuario;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Cita_MedicaDTO {
 
     private int id_cita;
-    private int id_usuario;
-    private Usuario id_doctor;
-    private LocalDateTime fecha;
+    private Long idUsuario;
+    private Long idDoctor;
+    private LocalDate fecha;
     private String motivo;
     private String estado;
 
@@ -21,12 +22,28 @@ public class Cita_MedicaDTO {
         this.id_cita = id_cita;
     }
 
-    public String getEstado() {
-        return estado;
+    public Long getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public Long getIdDoctor() {
+        return idDoctor;
+    }
+
+    public void setIdDoctor(Long idDoctor) {
+        this.idDoctor = idDoctor;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
 
     public String getMotivo() {
@@ -37,27 +54,11 @@ public class Cita_MedicaDTO {
         this.motivo = motivo;
     }
 
-    public LocalDateTime getFecha() {
-        return fecha;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
-    }
-
-    public Usuario getId_doctor() {
-        return id_doctor;
-    }
-
-    public void setId_doctor(Usuario id_doctor) {
-        this.id_doctor = id_doctor;
-    }
-
-    public int getId_usuario() {
-        return id_usuario;
-    }
-
-    public void setId_usuario(int id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }

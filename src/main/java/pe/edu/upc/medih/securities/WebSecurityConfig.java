@@ -64,8 +64,22 @@ public class WebSecurityConfig {
                                 antMatcher("/v3/api-docs/**"),
                                 antMatcher("/swagger-resources/**"),
                                 antMatcher("/webjars/**"),
-                                antMatcher("/Hospital/**"),
+
+                                antMatcher("/Chat/**"),
+                                antMatcher("/Cita_Medica/**"),
+                                antMatcher("/DetallesHistorialClinico/**"),
+                                antMatcher("/diagnosticos/**"),
+                                antMatcher("/Especialidad/**"),
+                                antMatcher("/ExamenMedico/**"),
                                 antMatcher("/historial/**"),
+                                antMatcher("/Hospital/**"),
+                                antMatcher("/ListaMedicamentosDetalle/**"),
+                                antMatcher("/Medicamento/**"),
+                                antMatcher("/contarPorDoctor/**"),
+                                antMatcher("/Rol/**"),
+                                antMatcher("/Tratamiento/**"),
+                                antMatcher("/UsuarioEspecialidad/**"),
+                                antMatcher("/Usuario/**"),
                                 antMatcher("/RecetaMedica/**")
                         ).permitAll()
                         .anyRequest().authenticated()

@@ -2,6 +2,8 @@ package pe.edu.upc.medih.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.medih.dtos.RolDTO;
 import pe.edu.upc.medih.entities.Rol;
@@ -46,8 +48,13 @@ public class RolController {
         rS.update(a);
     }
 
-    @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") Long id) {
-        rS.deleteRolById(id);
+    @DeleteMapping("/idrol")
+    public ResponseEntity<String> eliminar(@RequestParam Long id) {
+        boolean deleted = rS.deleteRolById(id);
+        if (deleted) {
+            return ResponseEntity.ok("Rol eliminado correctamente");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontró el rol con ID: " + id);
+        }
     }
 }

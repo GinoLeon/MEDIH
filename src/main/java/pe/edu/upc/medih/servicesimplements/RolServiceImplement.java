@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.medih.entities.Rol;
+import pe.edu.upc.medih.entities.Usuario;
 import pe.edu.upc.medih.repositories.IRolRepository;
 import pe.edu.upc.medih.servicesinterfaces.IRolService;
 
@@ -37,7 +38,8 @@ public class RolServiceImplement implements IRolService {
     }
 
     @Override
-    public void deleteRolById(Long id) {
-        rolesServices.deleteRolById(id);
+    public boolean deleteRolById(Long id) {
+        int rowsAffected = rolesServices.deleteRolById(id);
+        return rowsAffected > 0;
     }
 }

@@ -1,6 +1,8 @@
 package pe.edu.upc.medih.entities;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -14,7 +16,7 @@ public class Diagnostico {
     private String descripcion;
 
     @Column(name = "fecha",nullable = false)
-    private LocalDateTime fecha;
+    private LocalDate fecha;
 
     @Column(name = "estado",nullable = true,length = 100)
     private String estado;
@@ -30,7 +32,7 @@ public class Diagnostico {
     public Diagnostico() {
     }
 
-    public Diagnostico(int idDiagnostico, String descripcion, LocalDateTime fecha, String estado, Usuario usuario, Diagnostico diagnosticoComparado) {
+    public Diagnostico(int idDiagnostico, String descripcion, LocalDate fecha, String estado, Usuario usuario, Diagnostico diagnosticoComparado) {
         this.idDiagnostico = idDiagnostico;
         this.descripcion = descripcion;
         this.fecha = fecha;
@@ -55,11 +57,11 @@ public class Diagnostico {
         this.descripcion = descripcion;
     }
 
-    public LocalDateTime getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDateTime fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 

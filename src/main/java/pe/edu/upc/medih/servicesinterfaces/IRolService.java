@@ -12,5 +12,5 @@ public interface IRolService {
     public Rol searchbyId(Long id);
     public void update(Rol a);
 
-    public void deleteRolById(Long id);
+    public boolean deleteRolById(Long id);
 }

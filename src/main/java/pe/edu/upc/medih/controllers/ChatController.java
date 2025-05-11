@@ -43,6 +43,9 @@ public class ChatController {
         Chat m = a.map(dto,Chat.class);
         cS.update(m);
     }
-
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") int id) {
+        cS.delete(id);
+    }
 
 }

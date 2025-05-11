@@ -2,6 +2,7 @@ package pe.edu.upc.medih.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 @Entity
 @Table(name = "Chat")
@@ -14,7 +15,7 @@ public class Chat {
     private String mensaje;
 
     @Column(name = "FechaEnvio")
-    private LocalDateTime fechaEnvio;
+    private LocalDate fechaEnvio;
 
     @Column(name = "TipoMensaje", length = 50)
     private String tipoMensaje;
@@ -33,7 +34,7 @@ public class Chat {
     public Chat() {
     }
 
-    public Chat(int chatId, String mensaje, LocalDateTime fechaEnvio, String tipoMensaje, Usuario paciente, Usuario doctor, boolean leido) {
+    public Chat(int chatId, String mensaje, LocalDate fechaEnvio, String tipoMensaje, Usuario paciente, Usuario doctor, boolean leido) {
         this.chatId = chatId;
         this.mensaje = mensaje;
         this.fechaEnvio = fechaEnvio;
@@ -59,11 +60,11 @@ public class Chat {
         this.mensaje = mensaje;
     }
 
-    public LocalDateTime getFechaEnvio() {
+    public LocalDate getFechaEnvio() {
         return fechaEnvio;
     }
 
-    public void setFechaEnvio(LocalDateTime fechaEnvio) {
+    public void setFechaEnvio(LocalDate fechaEnvio) {
         this.fechaEnvio = fechaEnvio;
     }
 

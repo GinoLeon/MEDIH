@@ -1,5 +1,9 @@
 package pe.edu.upc.medih.dtos;
 
+
+import java.time.LocalDate;
+import java.util.List;
+
 public class UsuarioDTO {
     private Long id;
     private String nombreUsuario;
@@ -7,8 +11,17 @@ public class UsuarioDTO {
     private String correoUsuario;
     private String telefonoUsuario;
     private String contraseniaUsuario;
-    private String fechaNacimientoUsuario;
-    private String disponibilidadUsuario;// Nuevo campo para la edad
+    private LocalDate fechaNacimientoUsuario;
+    private String disponibilidadUsuario;
+    private List<RolUsuarioDTO> roles;
+
+    public List<RolUsuarioDTO> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RolUsuarioDTO> roles) {
+        this.roles = roles;
+    }
 
     public Long getId() {
         return id;
@@ -58,11 +71,12 @@ public class UsuarioDTO {
         this.contraseniaUsuario = contraseniaUsuario;
     }
 
-    public String getFechaNacimientoUsuario() {
+
+    public LocalDate getFechaNacimientoUsuario() {
         return fechaNacimientoUsuario;
     }
 
-    public void setFechaNacimientoUsuario(String fechaNacimientoUsuario) {
+    public void setFechaNacimientoUsuario(LocalDate fechaNacimientoUsuario) {
         this.fechaNacimientoUsuario = fechaNacimientoUsuario;
     }
 

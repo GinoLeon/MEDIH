@@ -1,6 +1,7 @@
 package pe.edu.upc.medih.servicesinterfaces;
 
 
+import pe.edu.upc.medih.dtos.UsuarioDTO;
 import pe.edu.upc.medih.entities.Usuario;
 
 import java.util.List;
@@ -11,7 +12,8 @@ public interface IUsuarioService {
     public void insert(Usuario a);
 
     public Usuario searchbyId(Long id);
-    public void update(Usuario a);
+
+    public UsuarioDTO update(Long id, UsuarioDTO usuarioDTO);
 
     public void delete(Long id);
 

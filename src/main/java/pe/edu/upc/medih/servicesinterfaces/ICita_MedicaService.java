@@ -6,14 +6,10 @@ import java.util.List;
 
 public interface ICita_MedicaService {
 
-    List<Cita_Medica> list();
-    List<Cita_Medica> findByEstado(String estado);
-
-    void insert(Cita_Medica cita);
-
-    Cita_Medica searchById(int id);
-
-    void update(Cita_Medica cita);
-
-    void delete(int id);
+    public List<Cita_Medica> list();
+    public List<Cita_Medica> findByEstado(String estado);
+    public void insert(Cita_Medica cita);
+    public Cita_Medica searchById(int id);
+    public void update(Cita_Medica cita);
+    public void delete(int id);
 }

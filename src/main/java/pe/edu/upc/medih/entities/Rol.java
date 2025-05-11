@@ -1,5 +1,6 @@
 package pe.edu.upc.medih.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -14,6 +15,7 @@ public class Rol implements Serializable {
     @Column(name = "nameRol", nullable = false)
     private String nameRol;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private Usuario user;

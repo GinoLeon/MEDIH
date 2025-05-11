@@ -1,6 +1,7 @@
 package pe.edu.upc.medih.servicesimplements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.medih.entities.HistorialClinico;
 import pe.edu.upc.medih.entities.Hospital;
 import pe.edu.upc.medih.repositories.IHospitalRepository;
 import pe.edu.upc.medih.servicesinterfaces.IHospitalService;
@@ -26,8 +27,8 @@ public class HospitalImplement implements IHospitalService {
 
     @Override
     public Hospital searchById(int id) {
-        Optional<Hospital> optional = hR.findById(id);
-        return optional.orElse(null);
+        return hR.findById(id).orElse(new Hospital());
+
     }
 
     @Override

@@ -6,6 +6,7 @@ import pe.edu.upc.medih.entities.Diagnostico;
 import pe.edu.upc.medih.repositories.IDDiagnosticoRepository;
 import pe.edu.upc.medih.servicesinterfaces.IDiagnosticoService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -31,7 +32,7 @@ public class DiagnosticoServiceImpl implements IDiagnosticoService {
 
     @Override
     public Diagnostico findById(int id) {
-        return diagnosticoRepository.findById(id).orElse(null);
+        return diagnosticoRepository.findById(id).orElse(new Diagnostico());
     }
 
     @Override
@@ -40,17 +41,13 @@ public class DiagnosticoServiceImpl implements IDiagnosticoService {
     }
 
     @Override
-    public void deleteByEstado(String estado) {
-        diagnosticoRepository.deleteByEstado(estado);
-    }
-
-    @Override
     public List<Diagnostico> findByDescripcionContaining(String descripcion) {
         return diagnosticoRepository.findByDescripcionContaining(descripcion);
     }
 
+
     @Override
-    public List<Diagnostico> findRecentDiagnosticos(String fecha) {
+    public List<String[]> findRecentDiagnosticos(LocalDate fecha) {
         return diagnosticoRepository.findRecentDiagnosticos(fecha);
     }
 }

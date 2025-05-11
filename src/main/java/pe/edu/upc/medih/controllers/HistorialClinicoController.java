@@ -1,12 +1,12 @@
 package pe.edu.upc.medih.controllers;
 
-import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.medih.dtos.HistorialClinicoDTO;
 import pe.edu.upc.medih.entities.HistorialClinico;
-import pe.edu.upc.medih.entities.Usuario;
 import pe.edu.upc.medih.servicesinterfaces.IHistorialClinicoService;
 
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/historial")
-@Slf4j
+
 public class HistorialClinicoController {
 
     @Autowired
@@ -22,7 +22,6 @@ public class HistorialClinicoController {
 
     @GetMapping
     public List<HistorialClinicoDTO> listar() {
-        log.info("Listado de todo el historial médico registradas");
         return hcS.list().stream().map(hc -> {
             ModelMapper mapper = new ModelMapper();
             return mapper.map(hc, HistorialClinicoDTO.class);
@@ -57,15 +56,22 @@ public class HistorialClinicoController {
 
     @GetMapping("/usuario/{idUsuario}")
     public List<HistorialClinicoDTO> listarPorUsuario(@PathVariable("idUsuario") int idUsuario) {
-        log.info("Listado de historiales clínicos del usuario con ID: {}", idUsuario);
         return hcS.listByUsuarioId(idUsuario).stream().map(hc -> {
             ModelMapper mapper = new ModelMapper();
             return mapper.map(hc, HistorialClinicoDTO.class);
         }).collect(Collectors.toList());
     }
 
-    @DeleteMapping
-    public void eliminarPorPaciente(@PathVariable("idPaciente") Long idPaciente) {
-        hcS.eliminarPorPaciente(idPaciente);
+    //Usaba @PathVariable no funcionaba asique lo cambie por @RequesParam y funciono
+
+    @DeleteMapping("/paciente")
+    public ResponseEntity<String> eliminarPorPaciente(@RequestParam Long idPaciente) {
+        boolean eliminado = hcS.eliminarPorPaciente(idPaciente);
+        if (eliminado) {
+            return ResponseEntity.ok("Historial clínico eliminado exitosamente.");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No se encontró historial clínico para eliminar.");
+        }
     }
 }

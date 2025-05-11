@@ -1,19 +1,22 @@
 package pe.edu.upc.medih.dtos;
 
-import java.time.LocalDateTime;
+
+import java.time.LocalDate;
 
 public class DiagnosticoDTO {
-    private int id;
+    private int idDiagnostico;
     private String descripcion;
-    private LocalDateTime fecha;
-    private long usuarioId;
+    private LocalDate fecha;
+    private String estado;
+    private Long usuarioId;
+    private Integer idDiagnosticoComparado;
 
-    public int getId() {
-        return id;
+    public int getIdDiagnostico() {
+        return idDiagnostico;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdDiagnostico(int idDiagnostico) {
+        this.idDiagnostico = idDiagnostico;
     }
 
     public String getDescripcion() {
@@ -24,19 +27,35 @@ public class DiagnosticoDTO {
         this.descripcion = descripcion;
     }
 
-    public LocalDateTime getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDateTime fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
-    public long getUsuarioId() {
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Long getUsuarioId() {
         return usuarioId;
     }
 
-    public void setUsuarioId(long usuarioId) {
+    public void setUsuarioId(Long usuarioId) {
         this.usuarioId = usuarioId;
+    }
+
+    public Integer getIdDiagnosticoComparado() {
+        return idDiagnosticoComparado;
+    }
+
+    public void setIdDiagnosticoComparado(Integer idDiagnosticoComparado) {
+        this.idDiagnosticoComparado = idDiagnosticoComparado;
     }
 }

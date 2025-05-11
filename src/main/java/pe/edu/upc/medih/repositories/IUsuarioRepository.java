@@ -36,5 +36,4 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
             " FROM usuarios u\n" +
             " WHERE u.id = :idUsuario;", nativeQuery = true)
     public List<String[]> calcularEdad(@Param("idUsuario") Long idUsuario);
-
 }

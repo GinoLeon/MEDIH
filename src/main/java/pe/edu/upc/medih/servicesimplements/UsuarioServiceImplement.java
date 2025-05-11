@@ -1,12 +1,16 @@
 package pe.edu.upc.medih.servicesimplements;
 
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.medih.dtos.UsuarioDTO;
+import pe.edu.upc.medih.entities.Rol;
 import pe.edu.upc.medih.entities.Usuario;
 import pe.edu.upc.medih.repositories.IUsuarioRepository;
 import pe.edu.upc.medih.servicesinterfaces.IUsuarioService;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -21,13 +25,8 @@ public class UsuarioServiceImplement implements IUsuarioService {
 
     @Override
     public void insert(Usuario a) {
-        log.info("Insertando usuario");
-        if (a==null||a.getNombreUsuario()==null||a.getApellidoUsuario()==null||a.getCorreoUsuario()==null||a.getContraseniaUsuario()==null||
-        a.getFechaNacimientoUsuario()==null||a.getTelefonoUsuario()==null||a.getDisponibilidadUsuario()==null) {
-            log.warn("⚠️ Datos incompletos o incorrectos para el registro del Usuario");
-        }
+        a.setId(null);
         uS.save(a);
-        log.info("Usuario registrado correctamente");
     }
 
     @Override
@@ -36,9 +35,37 @@ public class UsuarioServiceImplement implements IUsuarioService {
     }
 
     @Override
-    public void update(Usuario a) {
-        uS.save(a);
+    public UsuarioDTO update(Long id, UsuarioDTO usuarioDTO) {
+        Usuario usuarioExistente = uS.findById(id).get();
+
+        // Actualiza los datos básicos
+        usuarioExistente.setNombreUsuario(usuarioDTO.getNombreUsuario());
+        usuarioExistente.setApellidoUsuario(usuarioDTO.getApellidoUsuario());
+        usuarioExistente.setCorreoUsuario(usuarioDTO.getCorreoUsuario());
+        usuarioExistente.setTelefonoUsuario(usuarioDTO.getTelefonoUsuario());
+        usuarioExistente.setContraseniaUsuario(usuarioDTO.getContraseniaUsuario());
+        usuarioExistente.setFechaNacimientoUsuario(usuarioDTO.getFechaNacimientoUsuario());
+        usuarioExistente.setDisponibilidadUsuario(usuarioDTO.getDisponibilidadUsuario());
+
+        // Si estás actualizando roles:
+        if (usuarioDTO.getRoles() != null) {
+            List<Rol> nuevosRoles = usuarioDTO.getRoles().stream()
+                    .map(rolDTO -> {
+                        Rol rol = new Rol();
+                        rol.setIdRol(rolDTO.getIdRol()); // cuidado: si el rol ya existe, usa el mismo ID
+                        rol.setNameRol(rolDTO.getNameRol());
+                        rol.setUser(usuarioExistente); // muy importante para evitar inconsistencias
+                        return rol;
+                    }).collect(Collectors.toList());
+
+            usuarioExistente.setRol(nuevosRoles);
+        }
+
+        Usuario usuarioActualizado = uS.save(usuarioExistente);
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(usuarioExistente, UsuarioDTO.class);
     }
+
 
     @Override
     public void delete(Long id) {

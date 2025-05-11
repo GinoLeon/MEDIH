@@ -56,4 +56,9 @@ public class Cita_MedicaController {
             return modelMapper.map(cita, Cita_MedicaDTO.class);
         }).collect(Collectors.toList());
     }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") int id) {
+        cS.delete(id);
+    }
 }

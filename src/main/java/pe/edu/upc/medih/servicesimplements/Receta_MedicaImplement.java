@@ -40,9 +40,8 @@ public class Receta_MedicaImplement implements IReceta_MedicaService {
         recetaMedicaRepository.deleteById(id);
     }
 
-    // This method is used to count the number of prescriptions by doctor
     @Override
-    public List<Object[]> countRecetasByDoctor() {
+    public List<String[]> countRecetasByDoctor() {
         return recetaMedicaRepository.countRecetasByDoctor();
     }
 
@@ -52,7 +51,7 @@ public class Receta_MedicaImplement implements IReceta_MedicaService {
     }
 
     @Override
-    public List<Object[]> obtenerRecetasPorPaciente() {
+    public List<String[]> obtenerRecetasPorPaciente() {
         return recetaMedicaRepository.contarRecetasPorPaciente();
     }
 }

@@ -3,6 +3,7 @@ package pe.edu.upc.medih.controllers;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.medih.dtos.Cita_MedicaDTO;
 import pe.edu.upc.medih.entities.Cita_Medica;
@@ -20,6 +21,7 @@ public class Cita_MedicaController {
     private ICita_MedicaService cS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public List<Cita_MedicaDTO> listar() {
         log.info("Listado de todas las citas médicas registradas");
         return cS.list().stream().map(cita -> {
@@ -29,6 +31,7 @@ public class Cita_MedicaController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public void insertar(@RequestBody Cita_MedicaDTO dto) {
         ModelMapper modelMapper = new ModelMapper();
         Cita_Medica citaMedica = modelMapper.map(dto, Cita_Medica.class);
@@ -36,6 +39,7 @@ public class Cita_MedicaController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public Cita_MedicaDTO listarID(@PathVariable("id") int id) {
         ModelMapper modelMapper = new ModelMapper();
         Cita_MedicaDTO dto = modelMapper.map(cS.searchById(id), Cita_MedicaDTO.class);
@@ -43,6 +47,7 @@ public class Cita_MedicaController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public void modificar(@RequestBody Cita_MedicaDTO dto) {
         ModelMapper modelMapper = new ModelMapper();
         Cita_Medica citaMedica = modelMapper.map(dto, Cita_Medica.class);
@@ -50,6 +55,7 @@ public class Cita_MedicaController {
     }
 
     @GetMapping("/buscarPorEstado/{estado}")
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public List<Cita_MedicaDTO> buscarPorEstado(@PathVariable("estado") String estado) {
         return cS.findByEstado(estado).stream().map(cita -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -58,6 +64,7 @@ public class Cita_MedicaController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") int id) {
         cS.delete(id);
     }

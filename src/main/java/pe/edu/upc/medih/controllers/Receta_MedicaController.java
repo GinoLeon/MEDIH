@@ -2,10 +2,12 @@ package pe.edu.upc.medih.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.medih.dtos.Receta_MedicaDTO;
 import pe.edu.upc.medih.dtos.queries.CantidadRolDTO;
 import pe.edu.upc.medih.dtos.queries.DoctorRecetasDTO;
+import pe.edu.upc.medih.dtos.queries.PacienteRecetasDTO;
 import pe.edu.upc.medih.entities.Receta_Medica;
 import pe.edu.upc.medih.servicesinterfaces.IReceta_MedicaService;
 
@@ -22,6 +24,7 @@ public class Receta_MedicaController {
     private IReceta_MedicaService rM;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('PACIENTE') or hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public List<Receta_MedicaDTO> listar() {
         return rM.list().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -30,6 +33,7 @@ public class Receta_MedicaController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public void insertar(@RequestBody Receta_MedicaDTO dto) {
         ModelMapper m = new ModelMapper();
         Receta_Medica receta = m.map(dto, Receta_Medica.class);
@@ -37,6 +41,7 @@ public class Receta_MedicaController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public Receta_MedicaDTO buscarPorId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         Receta_MedicaDTO dto = m.map(rM.searchById(id), Receta_MedicaDTO.class);
@@ -44,6 +49,7 @@ public class Receta_MedicaController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public void modificar(@RequestBody Receta_MedicaDTO dto) {
         ModelMapper m = new ModelMapper();
         Receta_Medica receta = m.map(dto, Receta_Medica.class);
@@ -51,18 +57,29 @@ public class Receta_MedicaController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") int id) {
         rM.delete(id);
     }
 
-    // This method is used to count the number of prescriptions by doctor
+
     @GetMapping("/contarPorDoctor")
-    public List<Object[]> contarPorDoctor() {
-        return rM.countRecetasByDoctor();
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
+    public List<DoctorRecetasDTO> contarPorDoctor() {
+        List<DoctorRecetasDTO> dtolista = new ArrayList<>();
+        List<String[]> fila= rM.countRecetasByDoctor();
+        for (String[]columna : fila) {
+            DoctorRecetasDTO dto = new DoctorRecetasDTO();
+            dto.setNombreDoctor(columna[0]);
+            dto.setCantiadRecetas(Integer.parseInt(columna[1]));
+            dtolista.add(dto);
+        }
+        return dtolista;
     }
 
 
     @GetMapping("/medicamentos-recetados")
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public List<DoctorRecetasDTO> obtenerMedicamentosRecetados(@RequestParam LocalDate fecha) {
         List<DoctorRecetasDTO> dtolista = new ArrayList<>();
         List<String[]> fila= rM.obtenerMedicamentosRecetados(fecha);
@@ -77,7 +94,16 @@ public class Receta_MedicaController {
 
 
     @GetMapping("/recetas-por-paciente")
-    public List<Object[]> obtenerRecetasPorPaciente() {
-        return rM.obtenerRecetasPorPaciente();
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
+    public List<PacienteRecetasDTO> obtenerRecetasPorPaciente() {
+        List<PacienteRecetasDTO> dtolista = new ArrayList<>();
+        List<String[]> fila= rM.obtenerRecetasPorPaciente();
+        for (String[]columna : fila) {
+            PacienteRecetasDTO dto = new PacienteRecetasDTO();
+            dto.setNombre_usuario(columna[0]);
+            dto.setTotalRecetas(Integer.parseInt(columna[1]));
+            dtolista.add(dto);
+        }
+        return dtolista;
     }
 }

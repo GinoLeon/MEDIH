@@ -2,6 +2,7 @@ package pe.edu.upc.medih.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.medih.dtos.Examen_MedicoDTO;
 import pe.edu.upc.medih.dtos.RolDTO;
@@ -19,6 +20,7 @@ public class Examen_MedicoController {
     private IExamen_MedicoService eS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public List<Examen_MedicoDTO> listar() {
         return eS.list().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -27,6 +29,7 @@ public class Examen_MedicoController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public void insertar(@RequestBody Examen_MedicoDTO dto) {
         ModelMapper m = new ModelMapper();
         Examen_Medico a = m.map(dto, Examen_Medico.class);
@@ -34,6 +37,7 @@ public class Examen_MedicoController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public Examen_MedicoDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         Examen_MedicoDTO dto = m.map(eS.searchbyId(id), Examen_MedicoDTO.class);
@@ -41,6 +45,7 @@ public class Examen_MedicoController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public void modificar(@RequestBody Examen_MedicoDTO dto) {
         ModelMapper m = new ModelMapper();
         Examen_Medico a = m.map(dto, Examen_Medico.class);
@@ -48,6 +53,7 @@ public class Examen_MedicoController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") int id) {
         eS.delete(id);
     }

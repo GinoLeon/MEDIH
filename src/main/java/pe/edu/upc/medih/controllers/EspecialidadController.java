@@ -2,6 +2,7 @@ package pe.edu.upc.medih.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.medih.dtos.EspecialidadDTO;
 import pe.edu.upc.medih.dtos.RolDTO;
@@ -22,6 +23,8 @@ public class EspecialidadController {
     private IEspecialidadService eS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
+
     public List<EspecialidadDTO> listar() {
         return eS.list().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -30,6 +33,7 @@ public class EspecialidadController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody EspecialidadDTO dto) {
         ModelMapper m = new ModelMapper();
         Especialidad a = m.map(dto, Especialidad.class);
@@ -37,6 +41,7 @@ public class EspecialidadController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public EspecialidadDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         EspecialidadDTO dto = m.map(eS.searchbyId(id), EspecialidadDTO.class);
@@ -44,6 +49,7 @@ public class EspecialidadController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody EspecialidadDTO dto) {
         ModelMapper m = new ModelMapper();
         Especialidad a = m.map(dto, Especialidad.class);
@@ -51,10 +57,14 @@ public class EspecialidadController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+
     public void eliminar(@PathVariable("id") int id) {
         eS.delete(id);
     }
+
     @GetMapping("/Cantidad")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<CantidadDoctorEspecialidadDTO>CantidadDoctorEspecialidad() {
         List<CantidadDoctorEspecialidadDTO> dtolista = new ArrayList<>();
         List<String[]> fila=eS.CantidadDoctoresEspecialidad();
@@ -65,7 +75,6 @@ public class EspecialidadController {
             dtolista.add(dto);
         }
         return dtolista;
-
     }
 }
 

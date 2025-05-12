@@ -2,6 +2,7 @@ package pe.edu.upc.medih.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.medih.dtos.HospitalDTO;
 import pe.edu.upc.medih.dtos.RolDTO;
@@ -22,6 +23,7 @@ public class HospitalController {
     private IHospitalService hS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public List<HospitalDTO> listar() {
         return hS.list().stream().map(h -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -30,6 +32,7 @@ public class HospitalController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody HospitalDTO dto) {
         ModelMapper m = new ModelMapper();
         Hospital h = m.map(dto, Hospital.class);
@@ -37,6 +40,7 @@ public class HospitalController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public HospitalDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         HospitalDTO dto = m.map(hS.searchById(id), HospitalDTO.class);
@@ -44,6 +48,7 @@ public class HospitalController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody HospitalDTO dto) {
         ModelMapper m = new ModelMapper();
         Hospital a = m.map(dto, Hospital.class);
@@ -51,10 +56,12 @@ public class HospitalController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") int id) {
         hS.delete(id);
     }
 
+    @PreAuthorize("hasAuthority('PACIENTE') or hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     @GetMapping("/distancia")
     public List<DistanciaHospitalDTO> ResumenHistorialClinico(@RequestParam double latitud, @RequestParam double longitud) {
         List<DistanciaHospitalDTO> dtoLista=new ArrayList<>();

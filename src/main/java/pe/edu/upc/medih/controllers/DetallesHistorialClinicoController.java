@@ -2,6 +2,7 @@ package pe.edu.upc.medih.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.medih.dtos.DetallesHistorialClinicoDTO;
 import pe.edu.upc.medih.dtos.queries.ResumenDetalleHistorialClinicoDTO;
@@ -19,6 +20,7 @@ public class DetallesHistorialClinicoController {
     private IDetallesHistorialClinicoService dS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<DetallesHistorialClinicoDTO> listar() {
         return dS.list().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -27,6 +29,7 @@ public class DetallesHistorialClinicoController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody DetallesHistorialClinicoDTO dto) {
         ModelMapper m = new ModelMapper();
         DetallesHistorialClinico detalles = m.map(dto, DetallesHistorialClinico.class);
@@ -34,24 +37,28 @@ public class DetallesHistorialClinicoController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public DetallesHistorialClinicoDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         return m.map(dS.searchById(id), DetallesHistorialClinicoDTO.class);
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody DetallesHistorialClinicoDTO dto) {
         ModelMapper m = new ModelMapper();
         DetallesHistorialClinico detalles = m.map(dto, DetallesHistorialClinico.class);
         dS.update(detalles);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int id) {
         dS.delete(id);
     }
 
     @GetMapping("/resumen")
+    @PreAuthorize("hasAuthority('PACIENTE') or hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public List<ResumenDetalleHistorialClinicoDTO> ResumenHistorialClinico(@RequestParam long id) {
         List<ResumenDetalleHistorialClinicoDTO> dtoLista=new ArrayList<>();
         List<String[]> fila=dS.HistorialClinicoPorUsuario(id);

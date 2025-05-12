@@ -6,13 +6,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface IReceta_MedicaService {
-    public List<Object[]> countRecetasByDoctor();
     public void insert(Receta_Medica recetaMedica);
     public List<Receta_Medica> list();
     public Receta_Medica searchById(int id);
     public void update(Receta_Medica recetaMedica);
     public void delete(int id);
 
+    public List<String[]> countRecetasByDoctor();
     public List<String[]> obtenerMedicamentosRecetados(LocalDate fecha);
-    public List<Object[]> obtenerRecetasPorPaciente();
+    public List<String[]> obtenerRecetasPorPaciente();
 }

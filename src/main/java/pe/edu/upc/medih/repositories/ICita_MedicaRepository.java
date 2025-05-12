@@ -10,5 +10,5 @@ import java.util.List;
 public interface ICita_MedicaRepository extends JpaRepository<Cita_Medica, Integer> {
     // Custom query to find Cita_Medica by estado
     @Query("SELECT c FROM Cita_Medica c WHERE c.estado = :estado")
-    List<Cita_Medica> findByEstado(@Param("estado") String estado);
+    public List<Cita_Medica> findByEstado(@Param("estado") String estado);
 }

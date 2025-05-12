@@ -3,6 +3,7 @@ package pe.edu.upc.medih.servicesimplements;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.medih.dtos.UsuarioDTO;
 import pe.edu.upc.medih.entities.Rol;
@@ -18,6 +19,9 @@ public class UsuarioServiceImplement implements IUsuarioService {
     @Autowired
     private IUsuarioRepository uS;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public List<Usuario> list() {
         return uS.findAll();
@@ -26,6 +30,7 @@ public class UsuarioServiceImplement implements IUsuarioService {
     @Override
     public void insert(Usuario a) {
         a.setId(null);
+        a.setContraseniaUsuario(passwordEncoder.encode(a.getContraseniaUsuario()));
         uS.save(a);
     }
 

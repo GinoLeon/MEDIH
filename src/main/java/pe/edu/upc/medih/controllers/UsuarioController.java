@@ -3,6 +3,7 @@ package pe.edu.upc.medih.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.medih.dtos.UsuarioDTO;
 import pe.edu.upc.medih.dtos.UsuarioListDTO;
@@ -23,6 +24,7 @@ public class UsuarioController {
     private IUsuarioService uS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public List<UsuarioListDTO> listar() {
         return uS.list().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -38,6 +40,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('PACIENTE') or hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public UsuarioListDTO listarId(@PathVariable("id") Long id) {
         ModelMapper m = new ModelMapper();
         UsuarioListDTO dto = m.map(uS.searchbyId(id), UsuarioListDTO.class);
@@ -45,17 +48,20 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('PACIENTE') or hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public ResponseEntity<UsuarioDTO> updateUsuario(@PathVariable Long id, @RequestBody UsuarioDTO usuarioDTO) {
         UsuarioDTO usuarioActualizado = uS.update(id, usuarioDTO);
         return ResponseEntity.ok(usuarioActualizado);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Long id) {
         uS.delete(id);
     }
 
     @GetMapping("/Cantidad")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<CantidadRolDTO> listarRol() {
         List<CantidadRolDTO> dtolista = new ArrayList<>();
         List<String[]> fila= uS.ListarCantidadRoles();
@@ -68,8 +74,8 @@ public class UsuarioController {
         return dtolista;
     }
 
-    // Calcular Edad
     @GetMapping("/CalcularEdad")
+    @PreAuthorize("hasAuthority('PACIENTE') or hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public List<EdadUsuarioDTO> calcularEdad(@RequestParam Long idUsuario) {
         List<EdadUsuarioDTO> dtolista = new ArrayList<>();
         List<String[]> fila= uS.calcularEdad(idUsuario);

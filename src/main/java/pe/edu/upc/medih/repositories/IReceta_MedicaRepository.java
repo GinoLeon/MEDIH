@@ -12,9 +12,10 @@ import java.util.List;
 @Repository
 public interface IReceta_MedicaRepository extends JpaRepository<Receta_Medica, Integer> {
 
-    // Custom query to find Receta_Medica by estado
-    @Query("SELECT r.doctor.nombreUsuario, COUNT(r) FROM Receta_Medica r GROUP BY r.doctor")
-    List<Object[]> countRecetasByDoctor();
+
+    @Query(value = "SELECT r.id_doctor ,COUNT(*) as RecetasHechas FROM recetas_medicas r\n" +
+            "GROUP BY r.id_doctor",nativeQuery = true)
+    public List<String[]> countRecetasByDoctor();
 
 
     @Query(value = "SELECT u.nombre_usuario AS nombreDoctor, COUNT(r.id_receta) AS totalRecetas \n" +
@@ -26,10 +27,9 @@ public interface IReceta_MedicaRepository extends JpaRepository<Receta_Medica, I
     public List<String[]> obtenerMedicamentosRecetados(@Param("fecha") LocalDate fecha);
 
 
-    @Query("SELECT u.nombreUsuario AS paciente, COUNT(r) AS totalRecetas " +
-            "FROM Receta_Medica r " +
-            "JOIN r.usuario u " +
-            "GROUP BY u.nombreUsuario " +
-            "ORDER BY totalRecetas DESC")
-    List<Object[]> contarRecetasPorPaciente();
+    @Query(value = "SELECT u.nombre_usuario AS paciente, COUNT(r.id_usuario) AS totalRecetas FROM recetas_medicas r \n" +
+            "jOIN usuarios u on r.id_usuario=u.id\n" +
+            "GROUP BY u.nombre_usuario\n" +
+            "ORDER BY totalRecetas DESC",nativeQuery = true)
+    public List<String[]> contarRecetasPorPaciente();
 }

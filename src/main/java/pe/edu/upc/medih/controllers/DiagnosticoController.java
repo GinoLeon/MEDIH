@@ -3,6 +3,7 @@ package pe.edu.upc.medih.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.medih.dtos.DetallesHistorialClinicoDTO;
 import pe.edu.upc.medih.dtos.DiagnosticoDTO;
@@ -24,6 +25,7 @@ public class DiagnosticoController {
     private IDiagnosticoService diagnosticoService;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public List<DiagnosticoDTO> listar() {
         return diagnosticoService.list().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -32,6 +34,7 @@ public class DiagnosticoController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public void insertar(@RequestBody DiagnosticoDTO dto) {
         ModelMapper m = new ModelMapper();
         Diagnostico a = m.map(dto, Diagnostico.class);
@@ -39,12 +42,14 @@ public class DiagnosticoController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('PACIENTE') or hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public DiagnosticoDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         return m.map(diagnosticoService.findById(id), DiagnosticoDTO.class);
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public void modificar(@RequestBody DiagnosticoDTO dto) {
         ModelMapper m = new ModelMapper();
         Diagnostico a = m.map(dto, Diagnostico.class);
@@ -52,6 +57,7 @@ public class DiagnosticoController {
     }
 
     @GetMapping("/descripcion/{descripcion}")
+    @PreAuthorize("hasAuthority('PACIENTE') or hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public ResponseEntity<List<DiagnosticoDTO>> findByDescripcion(@PathVariable("descripcion") String descripcion) {
         List<DiagnosticoDTO> diagnosticos = diagnosticoService.findByDescripcionContaining(descripcion).stream().map(d -> {
             DiagnosticoDTO dto = new DiagnosticoDTO();
@@ -65,6 +71,7 @@ public class DiagnosticoController {
     }
 
     @GetMapping("/recientes")
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public List<DiagnosticoDTO> findRecentDiagnosticos(@RequestParam LocalDate fecha) {
         List<DiagnosticoDTO> dtoLista=new ArrayList<>();
         List<String[]> fila=diagnosticoService.findRecentDiagnosticos(fecha);
@@ -73,7 +80,7 @@ public class DiagnosticoController {
             if (columna[0] != null && !columna[0].isEmpty()) {
                 dto.setIdDiagnostico(Integer.parseInt(columna[0]));
             } else {
-                dto.setIdDiagnostico(0); // o puedes dejarlo sin asignar si prefieres
+                dto.setIdDiagnostico(0);
             }
             if (columna[1] != null && !columna[1].isEmpty()) {
                 dto.setIdDiagnosticoComparado(Integer.parseInt(columna[1]));

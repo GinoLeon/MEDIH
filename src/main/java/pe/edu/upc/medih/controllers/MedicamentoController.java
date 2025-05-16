@@ -18,11 +18,11 @@ public class MedicamentoController {
     private IMedicamentoService mS;
 
     @GetMapping
-    @PreAuthorize("asAuthority('DOCTOR')or hasAuthority('ADMIN')")
-    public List<Medicamento> listar() {
+    @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
+    public List<MedicamentoDTO> listar() {
         return mS.list().stream().map(x->{
             ModelMapper modelMapper = new ModelMapper();
-            return modelMapper.map(x,Medicamento.class);
+            return modelMapper.map(x,MedicamentoDTO.class);
         }).collect(Collectors.toList());
     }
     @PostMapping

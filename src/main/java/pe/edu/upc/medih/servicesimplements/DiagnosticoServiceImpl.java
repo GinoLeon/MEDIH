@@ -47,7 +47,7 @@ public class DiagnosticoServiceImpl implements IDiagnosticoService {
 
 
     @Override
-    public List<String[]> findRecentDiagnosticos(LocalDate fecha) {
+    public List<Diagnostico> findRecentDiagnosticos(LocalDate fecha) {
         return diagnosticoRepository.findRecentDiagnosticos(fecha);
     }
 }

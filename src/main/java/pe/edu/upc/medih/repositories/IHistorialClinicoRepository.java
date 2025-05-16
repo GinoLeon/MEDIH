@@ -11,12 +11,9 @@ import pe.edu.upc.medih.entities.Usuario;
 import java.util.List;
 
 public interface IHistorialClinicoRepository extends JpaRepository<HistorialClinico, Integer> {
-       // obitene todos los historiales cloiinicos de un paciente segun id
-
 
     @Query(value = "SELECT * FROM historial_clinico h WHERE id_usuario = :pacienteId",nativeQuery = true)
     public List<HistorialClinico> findByPacienteId(@Param("pacienteId") Integer pacienteId);
-
 
 
     @Query("SELECT h FROM HistorialClinico h WHERE h.usuario.id = :idPaciente")

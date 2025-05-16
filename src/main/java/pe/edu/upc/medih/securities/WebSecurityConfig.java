@@ -64,6 +64,7 @@ public class WebSecurityConfig {
                                 antMatcher("/v3/api-docs/**"),
                                 antMatcher("/swagger-resources/**"),
                                 antMatcher("/webjars/**")
+
                         ).permitAll()
                         .anyRequest().authenticated()
                 )

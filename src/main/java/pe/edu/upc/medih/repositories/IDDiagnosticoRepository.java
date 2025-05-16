@@ -14,6 +14,6 @@ public interface IDDiagnosticoRepository extends JpaRepository<Diagnostico, Inte
     public List<Diagnostico> findByDescripcionContaining(String descripcion);
 
     @Query(value = "SELECT * FROM diagnostico WHERE fecha >= :fecha", nativeQuery = true)
-    public List<String[]> findRecentDiagnosticos(@Param("fecha") LocalDate fecha);
+    public List<Diagnostico> findRecentDiagnosticos(@Param("fecha") LocalDate fecha);
 
 }

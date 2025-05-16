@@ -9,7 +9,7 @@ public class DetallesHistorialClinicoDTO {
     private Tratamiento tratamiento;
     private Examen_Medico examenMedico;
     private int idListaMedicamento;
-    private DiagnosticoDTO Diagnostico;
+    private DiagnosticoDTO diagnostico;
 
     public int getIdDetalleHistorial() {
         return idDetalleHistorial;
@@ -52,10 +52,10 @@ public class DetallesHistorialClinicoDTO {
     }
 
     public DiagnosticoDTO getDiagnostico() {
-        return Diagnostico;
+        return diagnostico;
     }
 
     public void setDiagnostico(DiagnosticoDTO diagnostico) {
-        Diagnostico = diagnostico;
+        this.diagnostico = diagnostico;
     }
 }

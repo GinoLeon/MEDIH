@@ -13,5 +13,5 @@ public interface IDiagnosticoService {
     public void update(Diagnostico diagnostico);
 
     public List<Diagnostico> findByDescripcionContaining(String descripcion);
-    public List<String[]> findRecentDiagnosticos(LocalDate fecha);
+    public List<Diagnostico> findRecentDiagnosticos(LocalDate fecha);
 }

@@ -73,28 +73,31 @@ public class DiagnosticoController {
     @GetMapping("/recientes")
     @PreAuthorize("hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
     public List<DiagnosticoDTO> findRecentDiagnosticos(@RequestParam LocalDate fecha) {
-        List<DiagnosticoDTO> dtoLista=new ArrayList<>();
-        List<String[]> fila=diagnosticoService.findRecentDiagnosticos(fecha);
-        for(String[]columna:fila){
-            DiagnosticoDTO dto=new DiagnosticoDTO();
-            if (columna[0] != null && !columna[0].isEmpty()) {
-                dto.setIdDiagnostico(Integer.parseInt(columna[0]));
-            } else {
-                dto.setIdDiagnostico(0);
-            }
-            if (columna[1] != null && !columna[1].isEmpty()) {
-                dto.setIdDiagnosticoComparado(Integer.parseInt(columna[1]));
+        List<Diagnostico> diagnosticos = diagnosticoService.findRecentDiagnosticos(fecha);
+
+        List<DiagnosticoDTO> dtoLista = new ArrayList<>();
+        for (Diagnostico diag : diagnosticos) {
+            DiagnosticoDTO dto = new DiagnosticoDTO();
+            dto.setIdDiagnostico(diag.getIdDiagnostico());
+            if (diag.getDiagnosticoComparado() != null) {
+                dto.setIdDiagnosticoComparado(diag.getDiagnosticoComparado().getIdDiagnostico());
             } else {
                 dto.setIdDiagnosticoComparado(null);
             }
-            dto.setFecha(LocalDate.parse(columna[2]));
-            dto.setUsuarioId(Long.parseLong(columna[3]));
-            dto.setDescripcion(columna[4]);
-            dto.setEstado(columna[5]);
-
+            dto.setFecha(diag.getFecha());
+            dto.setUsuarioId(diag.getUsuario().getId());
+            dto.setDescripcion(diag.getDescripcion());
+            dto.setEstado(diag.getEstado());
             dtoLista.add(dto);
         }
+
         return dtoLista;
+    }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('PACIENTE') or hasAuthority('DOCTOR')or hasAuthority('ADMIN')")
+    public void eliminar(@PathVariable("id") int id) {
+        diagnosticoService.delete(id);
     }
 
 }
